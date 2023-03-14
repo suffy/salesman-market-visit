@@ -165,8 +165,11 @@
                 </div>
 
                 {{-- <input type="button" value="submit" > --}}
-                <button class="btn-tambah">Save</button>
-                <a href="{{ route('visitController.export') }}">Export</a>
+                <div class="field-button">
+                    {{-- <button class="btn-tambah">Save</button> --}}
+                    <input type="submit" value="Save" class="submit-link">
+                    <a href="{{ route('visitController.export') }}" class="export-link">Export</a>
+                </div>
                       
             </form>
         </div>
@@ -191,7 +194,14 @@
                             <td><span class="data-list">{{ $item->nama_pemilik }}</span></td>
                             <td><span class="data-list">{{ $item->jenis_toko }}</span></td>
                             <td><span class="data-list">{{ $item->alamat_toko }}</span></td>
-                            <td><span class="data-list"><a href="#">detail</a></span></td>
+                            <td>
+                                <form onsubmit="return confirm('Yakin hapus data ini ?')" action="{{ route('visit.destroy', $item->id) }}" class="d-inline" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    {{-- <a href="#" class="delete-link">delete</a> --}}
+                                    <button class="delete-link" type="submit" name="submit">delete</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                         

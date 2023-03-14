@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
+use App\Exports\VisitsExport;
 use App\Models\product;
 use App\Models\productMpm;
 use App\Models\visit;
@@ -10,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class visitController extends Controller
 {
@@ -151,13 +153,14 @@ class visitController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(string $id)
     {
-        //
+        visit::where('id', $id)->delete();
+        return redirect()->route('visit.index')->with('success', 'berhasil delete data');
     }
 
     public function export(){
-        return Excel::download(new visit,'test.xls');
+        return Excel::download(new VisitsExport, 'visits.xlsx');
     }
 
 }

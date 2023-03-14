@@ -364,7 +364,7 @@ nav.close ~ .dashboard .top {
 /* button */
 .btn-tambah {
     margin-top: 1rem;
-    /* display: inline-block; */
+    display: inline-block;
     padding: 1rem 3rem;
     font-size: 1rem;
     color: #fff;
@@ -373,6 +373,50 @@ nav.close ~ .dashboard .top {
     border-radius: 0.5rem;
     outline: none;
     border: none;
+}
+
+.export-link {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: var(--box1-color);
+    cursor: pointer;
+    border-radius: 0.5rem;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+.submit-link {
+    margin-top: 1rem;
+    margin-right: 10px;
+    display: inline-block;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    border-radius: 0.5rem;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+.delete-link {
+    margin-top: 1rem;
+    margin-right: 10px;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #c01a1a;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    outline: none;
+    border: none;
+    text-decoration: none;
 }
 
 /* form {
@@ -679,6 +723,14 @@ form .buttons button,
 }
 .item.checked .check-icon {
     transform: scale(1);
+}
+
+.field-button {
+    /* width: 70%; */
+    color: salmon;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 1000px) {
