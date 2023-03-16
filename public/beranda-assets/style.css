@@ -796,6 +796,13 @@ form .buttons button,
         width: calc(100% / 2 - 15px);
         margin-top: 15px;
     }
+
+    form .fields .input-field {
+        display: flex;
+        width: calc(100% / 1 - 15px);
+        flex-direction: column;
+        margin: 4px 0;
+    }
 }
 @media (max-width: 560px) {
     .dash-content .boxes .box {
