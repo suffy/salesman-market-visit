@@ -15,7 +15,7 @@
           <li><a href="#">Home</a></li>
           {{-- <li><a href="#">Portfolio</a></li>
           <li><a href="#">Clients</a></li> --}}
-          <li><a href="#">Contact</a></li>
+          {{-- <li><a href="#">Contact</a></li> --}}
         </ul>
         <div class="toggle-btn" id="btn">
           <span id="btnText">Dark</span>
@@ -31,10 +31,10 @@
         </p>
         <a href="{{ url('auth/redirect') }}">Click Here</a>
       </div>
-
+      <br><br>
       <div class="image-box">
         <img src="{{ asset('landing-page') }}/images/pngwing.com.png" />
-        <div class="pattern">
+        <div class="patternx">
           {{-- <img src="{{ asset('landing-page') }}/images/background.png" /> --}}
           {{-- <img src="{{ asset('landing-page') }}/images/background.png" /> --}}
         </div>

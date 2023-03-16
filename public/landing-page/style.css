@@ -131,7 +131,8 @@ nav ul li a {
 
 .image-box {
     position: absolute;
-    bottom: 0;
+    /* bottom: 1px; */
+    /* padding: 15px 70px 170px; */
     right: 10%;
     margin-bottom: 100px;
 }
@@ -173,8 +174,12 @@ nav ul li a {
 
 @media (max-width: 900px) {
     .image-box img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 300px;
-        display: block;
+        /* display: block; */
+        padding: -10px;
     }
 
     .content h1 {
@@ -191,5 +196,12 @@ nav ul li a {
         font-family: serif;
         color: var(--title-color);
         font-weight: 400;
+    }
+
+
+    .toggle-btn img {
+        width: 10px;
+        margin-left: 10px;
+        margin-right: 0px;
     }
 }
