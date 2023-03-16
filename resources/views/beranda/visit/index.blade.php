@@ -101,7 +101,7 @@
                 <div class="details personal">
                     <span class="title">Data Produk MPM</span>
         
-                    <div class="fields">
+                    <div class="fields-full-width">
 
                         <div class="input-field">
 
@@ -125,7 +125,7 @@
                         </div>
                     </div>
 
-                    <div class="fields">
+                    <div class="fields-full-width">
                         <div class="input-field">
                             <div class="select-btn-us" id="select-btn-us">
                                 <span class="btn-text-us">US</span>
@@ -168,7 +168,7 @@
                 <div class="field-button">
                     {{-- <button class="btn-tambah">Save</button> --}}
                     <input type="submit" value="Save" class="submit-link">
-                    <a href="{{ route('visitController.export') }}" class="export-link">Export</a>
+                    <a href="{{ route('visitController.exportvisit') }}" class="export-link">Export</a>
                 </div>
                       
             </form>

@@ -10,10 +10,12 @@ use App\Http\Controllers\depanController;
 use App\Http\Controllers\skillController;
 use App\Http\Controllers\visitController;
 use App\Http\Controllers\berandaController;
+use App\Http\Controllers\BriefingController;
 use App\Http\Controllers\halamanController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\educationController;
 use App\Http\Controllers\experienceController;
+use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\pengaturanHalamanController;
 
 /*
@@ -51,7 +53,11 @@ Route::prefix('beranda')->middleware('auth')->group(
         });
         Route::get('/', [berandaController::class, 'index']);
         Route::resource('visit', visitController::class);
-        Route::get('export', [visitController::class, "export"])->name('visitController.export');
+        Route::resource('briefing', BriefingController::class);
+        Route::resource('meeting', MeetingController::class);
+        Route::get('exportvisit', [visitController::class, "export"])->name('visitController.exportvisit');
+        Route::get('exportbriefing', [BriefingController::class, "export"])->name('briefingController.exportbriefing');
+        Route::get('exportmeeting', [MeetingController::class, "export"])->name('meetingController.exportmeeting');
     }
 );
 

@@ -13,9 +13,17 @@
                 <i class="uil uil-estate"></i>
                 <span class="link-name">Dashboard</span>
             </a></li>
+            <li><a href="/beranda/briefing">
+                <i class="uil uil-files-landscapes"></i>
+                <span class="link-name">Briefing</span>
+            </a></li>
+            <li><a href="/beranda/meeting">
+                <i class="uil uil-files-landscapes"></i>
+                <span class="link-name">Meeting</span>
+            </a></li>
             <li><a href="/beranda/visit">
                 <i class="uil uil-files-landscapes"></i>
-                <span class="link-name">Kunjungan Toko</span>
+                <span class="link-name">Market Visit</span>
             </a></li>
             
         </ul>

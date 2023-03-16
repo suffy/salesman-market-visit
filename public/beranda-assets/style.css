@@ -484,6 +484,12 @@ form .fields .input-field {
     flex-direction: column;
     margin: 4px 0;
 }
+.fields-full-width {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin: 4px 0;
+}
 .input-field label {
     font-size: 12px;
     font-weight: 500;
@@ -731,6 +737,14 @@ form .buttons button,
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.field-button-left {
+    /* width: 70%; */
+    color: salmon;
+    display: flex;
+    align-items: left;
+    justify-content: left;
 }
 
 @media (max-width: 1000px) {
