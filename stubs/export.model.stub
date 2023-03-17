@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Exports;
+namespace DummyNamespace;
 
-use App\Models\Meeting;
+use DummyFullModelClass;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class MeetingsExport implements FromCollection
+class DummyClass implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Meeting::all();
+        return DummyModelClass::all();
     }
 }
