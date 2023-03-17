@@ -37,7 +37,7 @@ class visitController extends Controller
      */
     public function create(): Response
     {
-        
+
     }
 
     /**
@@ -68,7 +68,7 @@ class visitController extends Controller
         ]);
 
         if ($request->hasFile('foto_toko')) {
-            
+
             $foto_file = $request->file('foto_toko');
             $foto_ekstensi = $foto_file->extension();
             $foto_baru = date('ymdhis').".$foto_ekstensi";
@@ -86,7 +86,7 @@ class visitController extends Controller
                 'created_by_email'    => Auth::user()->email
             ];
 
-            
+
 
         }else{
             $data = [
@@ -97,7 +97,7 @@ class visitController extends Controller
                 'produk_kompetitor' => $request->produk_kompetitor,
                 'catatan' => $request->catatan,
                 'created_by'    => Auth::user()->name,
-                'created_by_email'    => Auth::user()->email 
+                'created_by_email'    => Auth::user()->email
             ];
 
         }
@@ -107,24 +107,24 @@ class visitController extends Controller
 
         if ($request->deltomed) {
             foreach ($request->deltomed as $kodeprod_deltomed) {
-            
+
                 $deltomed = [
                     'id_ref'   => $id_header,
                     'kodeprod' => $kodeprod_deltomed
                 ];
-        
+
                 $save = productMpm::create($deltomed);
             }
         }
 
         if ($request->us) {
             foreach ($request->us as $kodeprod_us) {
-            
+
                 $us = [
                     'id_ref'   => $id_header,
                     'kodeprod' => $kodeprod_us
                 ];
-        
+
                 $save = productMpm::create($us);
             }
         }
@@ -167,7 +167,9 @@ class visitController extends Controller
     }
 
     public function export(){
-        return Excel::download(new VisitsExport, 'visits.xlsx');
+
+        $date = date("Y-m-d");
+        return Excel::download(new VisitsExport, "visits_$date.csv", \Maatwebsite\Excel\Excel::CSV);
     }
 
 }
