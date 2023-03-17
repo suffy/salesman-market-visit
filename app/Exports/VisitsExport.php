@@ -6,9 +6,6 @@ use App\Models\visit;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-
-use Maatwebsite\Excel\Concerns\WithProperties;
 
 class VisitsExport implements FromView, ShouldAutoSize
 {

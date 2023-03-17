@@ -56,7 +56,7 @@ class MeetingController extends Controller
             'jenis' => $request->jenis,
             'keterangan' => $request->keterangan,
             'created_by'    => Auth::user()->name,
-            'created_by_email'    => Auth::user()->email 
+            'created_by_email'    => Auth::user()->email
         ];
 
         $save = Meeting::create($data);
@@ -97,6 +97,9 @@ class MeetingController extends Controller
     }
 
     public function export(){
-        return Excel::download(new MeetingsExport, 'meeting.xlsx');
+
+        $date = date("Y-m-d");
+        return Excel::download(new MeetingsExport, "meeting_$date.csv", \Maatwebsite\Excel\Excel::CSV);
     }
+
 }

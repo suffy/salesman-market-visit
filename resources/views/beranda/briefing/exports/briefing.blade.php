@@ -16,6 +16,5 @@
             <td><span class="data-list">{{ $item->created_by }}</span></td>
         </tr>
         @endforeach
-
     </tbody>
 </table>
