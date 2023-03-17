@@ -12,6 +12,6 @@ class MeetingsExport implements FromCollection
     */
     public function collection()
     {
-        return Meeting::all();
+        return Meeting::allaass();
     }
 }
