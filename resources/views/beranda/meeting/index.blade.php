@@ -1,8 +1,6 @@
 @extends('beranda.layout')
 
 @section('konten')
-
-
     <div class="dash-content">
         <div class="overview">
             <div class="title">
@@ -14,11 +12,11 @@
         @include('beranda.pesan')
 
         <form action="{{ route('meeting.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf 
-            <div class="container">  
+            @csrf
+            <div class="container">
                 <div class="details personal">
                     {{-- <span class="title">Data Toko</span> --}}
-        
+
                     <div class="fields">
                         <div class="input-field">
                             <label>Tanggal Meeting</label>
@@ -31,9 +29,9 @@
                             <input type="text" name="jenis" placeholder="jenis meeting .." />
                         </div>
                     </div>
-                </div>       
+                </div>
             </div>
-        
+
             <div class="fields">
                 <div class="input-field">
                     <label>Notulen / Keterangan</label>
@@ -49,30 +47,31 @@
                 <a href="{{ route('meetingController.exportmeeting') }}" class="export-link">Export</a>
             </div>
 
-           
+
         </form>
 
 
-            <div class="activity-data">
-                <table id="example" class="hover" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th class="data-title">createdBy</th>
-                            <th class="data-title">Tanggal</th>
-                            <th class="data-title">Jenis</th>
-                            <th class="data-title">Notulen</th>
-                            <th class="data-title">#</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data['query'] as $item)
+        <div class="activity-data">
+            <table id="example" class="hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="data-title">createdBy</th>
+                        <th class="data-title">Tanggal</th>
+                        <th class="data-title">Jenis</th>
+                        <th class="data-title">Notulen</th>
+                        <th class="data-title">#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data['query'] as $item)
                         <tr>
                             <td><span class="data-list">{{ $item->created_by }}</span></td>
                             <td><span class="data-list">{{ $item->tgl_meeting }}</span></td>
                             <td><span class="data-list">{{ $item->jenis }}</span></td>
                             <td><span class="data-list">{!! $item->keterangan !!}</span></td>
                             <td>
-                                <form onsubmit="return confirm('Yakin hapus data ini ?')" action="{{ route('meeting.destroy', $item->id) }}" class="d-inline" method="POST">
+                                <form onsubmit="return confirm('Yakin hapus data ini ?')"
+                                    action="{{ route('meeting.destroy', $item->id) }}" class="d-inline" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     {{-- <a href="#" class="delete-link">delete</a> --}}
@@ -80,14 +79,13 @@
                                 </form>
                             </td>
                         </tr>
-                        @endforeach
-                        
-                    </tbody>
-                </table>
-            </div>
+                    @endforeach
+
+                </tbody>
+            </table>
         </div>
+    </div>
 
     </div>
-</section>
-
+    </section>
 @endsection

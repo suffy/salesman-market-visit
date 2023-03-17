@@ -24,7 +24,7 @@ class BriefingController extends Controller
             "query" => Briefing::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
         ];
         return view('beranda.briefing.index')->with("data", $data);
-        
+
     }
 
     /**
@@ -59,7 +59,7 @@ class BriefingController extends Controller
             'jenis' => $request->jenis,
             'keterangan' => $request->keterangan,
             'created_by'    => Auth::user()->name,
-            'created_by_email'    => Auth::user()->email        
+            'created_by_email'    => Auth::user()->email
         ];
 
         $save = Briefing::create($data);
@@ -100,7 +100,9 @@ class BriefingController extends Controller
     }
 
     public function export(){
-        return Excel::download(new BriefingsExport, 'briefing.xlsx');
+
+        $date = date("Y-m-d");
+        return Excel::download(new BriefingsExport, "briefing_$date.csv", \Maatwebsite\Excel\Excel::CSV);
     }
 
 }

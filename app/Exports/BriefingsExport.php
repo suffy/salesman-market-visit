@@ -3,15 +3,20 @@
 namespace App\Exports;
 
 use App\Models\Briefing;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class BriefingsExport implements FromCollection
+class BriefingsExport implements FromView, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+
+    public function view(): View
     {
-        return Briefing::all();
+        return view('beranda.briefing.exports.briefing', [
+            'briefing' => Briefing::all()
+        ]);
     }
 }
