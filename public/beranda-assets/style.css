@@ -633,7 +633,9 @@ form .buttons button,
 } */
 
 .select-btn,
-.select-btn-us {
+.select-btn-us,
+.select-btn-marguna,
+.select-btn-intrafood {
     display: flex;
     height: 50px;
     align-items: center;
@@ -645,13 +647,17 @@ form .buttons button,
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 .select-btn .btn-text,
-.select-btn-us .btn-text-us {
+.select-btn-us .btn-text-us,
+.select-btn-marguna .btn-text-marguna,
+.select-btn-intrafood .btn-text-intrafood {
     font-size: 17px;
     font-weight: 400;
     color: var(--text-color);
 }
 .select-btn .arrow-dwn,
-.select-btn-us .arrow-dwn-us {
+.select-btn-us .arrow-dwn-us,
+.select-btn-marguna .arrow-dwn-marguna,
+.select-btn-intrafood .arrow-dwn-intrafood {
     display: flex;
     height: 21px;
     width: 21px;
@@ -669,8 +675,16 @@ form .buttons button,
 .select-btn-us.open .arrow-dwn {
     transform: rotate(-180deg);
 }
+.select-btn-marguna.open .arrow-dwn {
+    transform: rotate(-180deg);
+}
+.select-btn-intrafood.open .arrow-dwn {
+    transform: rotate(-180deg);
+}
 .list-items,
-.list-items-us {
+.list-items-us,
+.list-items-marguna,
+.list-items-intrafood {
     position: relative;
     margin-top: 1px;
     border-radius: 8px;
@@ -681,11 +695,15 @@ form .buttons button,
 }
 
 .select-btn.open ~ .list-items,
-.select-btn-us.open ~ .list-items-us {
+.select-btn-us.open ~ .list-items-us,
+.select-btn-marguna.open ~ .list-items-marguna,
+.select-btn-intrafood.open ~ .list-items-intrafood {
     display: block;
 }
 .list-items .item,
-.list-items-us .item-us {
+.list-items-us .item-us,
+.list-items-marguna .item-marguna,
+.list-items-intrafood .item-intrafood {
     display: flex;
     align-items: center;
     list-style: none;
@@ -696,17 +714,23 @@ form .buttons button,
     border-radius: 8px;
 }
 .list-items .item:hover,
-.list-items-us .item-us:hover {
+.list-items-us .item-us:hover,
+.list-items-marguna .item-marguna:hover,
+.list-items-intrafood .item-intrafood:hover {
     background-color: var(--box2-color);
 }
 .item .item-text,
-.item-us .item-text-us {
+.item-us .item-text-us,
+.item-marguna .item-text-marguna,
+.item-intrafood .item-text-intrafood {
     font-size: 16px;
     font-weight: 400;
     color: var(--black-light-color);
 }
 .item .checkbox,
-.item-us .checkbox {
+.item-us .checkbox,
+.item-marguna .checkbox,
+.item-intrafood .checkbox {
     display: flex;
     align-items: center;
     justify-content: center;

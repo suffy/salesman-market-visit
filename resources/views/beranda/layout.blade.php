@@ -17,6 +17,10 @@
     {{-- datatable --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
     
+    {{-- summernote --}}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
 
     <title>Admin Dashboard Panel</title> 
 </head>
@@ -46,6 +50,8 @@
     <script>
         const selectBtn = document.querySelector(".select-btn");
         const selectBtnUs = document.querySelector(".select-btn-us");
+        const selectBtnMarguna = document.querySelector(".select-btn-marguna");
+        const selectBtnIntrafood = document.querySelector(".select-btn-intrafood");
 
         items = document.querySelectorAll(".item");
 
@@ -58,7 +64,53 @@
             // console.log('us')
             selectBtnUs.classList.toggle("open");
         });
+
+        selectBtnMarguna.addEventListener("click", () => {
+            // console.log('us')
+            selectBtnMarguna.classList.toggle("open");
+        });
+
+        selectBtnIntrafood.addEventListener("click", () => {
+            // console.log('us')
+            selectBtnIntrafood.classList.toggle("open");
+        });
     </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <script>
+        $('#briefing').summernote({
+          placeholder: '',
+          tabsize: 2,
+          height: 120,
+          toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+          ]
+        });
+      </script>
+    <script>
+        $('#meeting').summernote({
+          placeholder: '',
+          tabsize: 2,
+          height: 220,
+          toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+          ]
+        });
+      </script>
 
 
 </body>

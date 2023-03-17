@@ -10,6 +10,7 @@ use App\Models\visit;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
@@ -22,9 +23,11 @@ class visitController extends Controller
     public function index()
     {
         $data = [
-            "query" => visit::orderBy('id', 'desc')->get(),
+            "query" => visit::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
             "deltomed" => product::where("supp", "001")->get(),
-            "us" => product::where("supp", "005")->get()
+            "us" => product::where("supp", "005")->get(),
+            "marguna" => product::where("supp", "002")->get(),
+            "intrafood" => product::where("supp", "010")->get(),
         ];
         return view('beranda.visit.index')->with("data", $data);
     }
@@ -79,6 +82,8 @@ class visitController extends Controller
                 'foto_toko' => $foto_baru,
                 'produk_kompetitor' => $request->produk_kompetitor,
                 'catatan' => $request->catatan,
+                'created_by'    => Auth::user()->name,
+                'created_by_email'    => Auth::user()->email
             ];
 
             
@@ -91,6 +96,8 @@ class visitController extends Controller
                 'jenis_toko' => $request->jenis_toko,
                 'produk_kompetitor' => $request->produk_kompetitor,
                 'catatan' => $request->catatan,
+                'created_by'    => Auth::user()->name,
+                'created_by_email'    => Auth::user()->email 
             ];
 
         }

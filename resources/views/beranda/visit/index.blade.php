@@ -106,7 +106,7 @@
                         <div class="input-field">
 
                             <div class="select-btn">
-                                <span class="btn-text">Deltomed</span>
+                                <span class="btn-text">Deltomed (click to open)</span>
                                 <span class="arrow-dwn">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </span>
@@ -128,7 +128,7 @@
                     <div class="fields-full-width">
                         <div class="input-field">
                             <div class="select-btn-us" id="select-btn-us">
-                                <span class="btn-text-us">US</span>
+                                <span class="btn-text-us">Ultra Sakti (click to open)</span>
                                 <span class="arrow-dwn-us">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </span>
@@ -143,6 +143,45 @@
                             </ul>
                         </div>
                     </div>
+
+                    <div class="fields-full-width">
+                        <div class="input-field">
+                            <div class="select-btn-marguna" id="select-btn-marguna">
+                                <span class="btn-text-marguna">Marguna (click to open)</span>
+                                <span class="arrow-dwn-marguna">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <ul class="list-items-marguna">
+                                @foreach ($data['marguna'] as $item)   
+                                <li class="item-marguna">
+                                    <input type="checkbox" class="checkbox fa-solid fa-check check-icon" name="marguna[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}">
+                                    <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fields-full-width">
+                        <div class="input-field">
+                            <div class="select-btn-intrafood" id="select-btn-intrafood">
+                                <span class="btn-text-intrafood">Intrafood (click to open)</span>
+                                <span class="arrow-dwn-intrafood">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <ul class="list-items-intrafood">
+                                @foreach ($data['intrafood'] as $item)   
+                                <li class="item-intrafood">
+                                    <input type="checkbox" class="checkbox fa-solid fa-check check-icon" name="intrafood[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}">
+                                    <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
                     
                 <br><br>
@@ -180,6 +219,7 @@
                 <table id="example" class="hover" style="width:100%">
                     <thead>
                         <tr>
+                            <th class="data-title">CreatedBy</th>
                             <th class="data-title">Toko</th>
                             <th class="data-title">Pemilik</th>
                             <th class="data-title">Jenis</th>
@@ -190,6 +230,7 @@
                     <tbody>
                         @foreach ($data['query'] as $item)
                         <tr>
+                            <td><span class="data-list">{{ $item->created_by }}</span></td>
                             <td><span class="data-list">{{ $item->nama_toko }}</span></td>
                             <td><span class="data-list">{{ $item->nama_pemilik }}</span></td>
                             <td><span class="data-list">{{ $item->jenis_toko }}</span></td>
@@ -206,15 +247,6 @@
                         @endforeach
                         
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th class="data-title">Toko</th>
-                            <th class="data-title">Pemilik</th>
-                            <th class="data-title">Jenis</th>
-                            <th class="data-title">Alamat</th>
-                            <th class="data-title">#</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

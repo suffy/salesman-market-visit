@@ -16,6 +16,8 @@ return new class extends Migration
             $table->date('tgl_meeting');
             $table->string('jenis');
             $table->text('keterangan');
+            $table->string('created_by');
+            $table->string('created_by_email');
             $table->timestamps();
         });
     }

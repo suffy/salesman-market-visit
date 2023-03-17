@@ -10,6 +10,6 @@ class Meeting extends Model
     use HasFactory;
 
     protected $table = "meetings";
-    protected $fillable = ["tgl_meeting","jenis","keterangan"];
+    protected $fillable = ["tgl_meeting","jenis","keterangan","created_by","created_by_email"];
 
 }

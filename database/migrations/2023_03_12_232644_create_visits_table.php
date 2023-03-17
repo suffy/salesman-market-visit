@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('foto_toko')->nullable();
             $table->text('produk_kompetitor');
             $table->text('catatan');
+            $table->string('created_by');
+            $table->string('created_by_email');
             $table->timestamps();
         });
     }

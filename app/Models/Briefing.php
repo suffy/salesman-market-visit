@@ -10,5 +10,5 @@ class Briefing extends Model
     use HasFactory;
     
     protected $table = "briefings";
-    protected $fillable = ["tgl_briefing","jenis","keterangan"];
+    protected $fillable = ["tgl_briefing","jenis","keterangan","created_by","created_by_email"];
 }

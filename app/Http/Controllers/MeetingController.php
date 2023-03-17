@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MeetingsExport;
 use App\Models\Meeting;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MeetingController extends Controller
 {
@@ -16,7 +19,7 @@ class MeetingController extends Controller
     public function index()
     {
         $data = [
-            "query" => Meeting::orderBy('id', 'desc')->get(),
+            "query" => Meeting::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
         ];
         return view('beranda.meeting.index')->with("data", $data);
     }
@@ -51,7 +54,9 @@ class MeetingController extends Controller
         $data = [
             'tgl_meeting' => $request->tgl_meeting,
             'jenis' => $request->jenis,
-            'keterangan' => $request->keterangan
+            'keterangan' => $request->keterangan,
+            'created_by'    => Auth::user()->name,
+            'created_by_email'    => Auth::user()->email 
         ];
 
         $save = Meeting::create($data);
@@ -85,8 +90,13 @@ class MeetingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(string $id)
     {
-        //
+        Meeting::where('id', $id)->delete();
+        return redirect()->route('meeting.index')->with('success', 'berhasil delete data');
+    }
+
+    public function export(){
+        return Excel::download(new MeetingsExport, 'meeting.xlsx');
     }
 }

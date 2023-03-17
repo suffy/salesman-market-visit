@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BriefingsExport;
+use App\Exports\VisitsExport;
 use App\Models\Briefing;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BriefingController extends Controller
 {
@@ -16,10 +21,10 @@ class BriefingController extends Controller
     public function index()
     {
         $data = [
-            "query" => Briefing::orderBy('id', 'desc')->get(),
+            "query" => Briefing::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
         ];
         return view('beranda.briefing.index')->with("data", $data);
-        // return 'hello';
+        
     }
 
     /**
@@ -52,7 +57,9 @@ class BriefingController extends Controller
         $data = [
             'tgl_briefing' => $request->tgl_briefing,
             'jenis' => $request->jenis,
-            'keterangan' => $request->keterangan
+            'keterangan' => $request->keterangan,
+            'created_by'    => Auth::user()->name,
+            'created_by_email'    => Auth::user()->email        
         ];
 
         $save = Briefing::create($data);
@@ -86,8 +93,14 @@ class BriefingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(string $id)
     {
-        //
+        Briefing::where('id', $id)->delete();
+        return redirect()->route('briefing.index')->with('success', 'berhasil delete data');
     }
+
+    public function export(){
+        return Excel::download(new BriefingsExport, 'briefing.xlsx');
+    }
+
 }

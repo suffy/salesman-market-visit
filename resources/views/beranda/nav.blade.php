@@ -15,14 +15,15 @@
             </a></li>
             <li><a href="/beranda/briefing">
                 <i class="uil uil-files-landscapes"></i>
+                {{-- <i class="uil uil-briefcase-alt"></i> --}}
                 <span class="link-name">Briefing</span>
             </a></li>
             <li><a href="/beranda/meeting">
-                <i class="uil uil-files-landscapes"></i>
+                <i class="uil uil-meeting-board"></i>
                 <span class="link-name">Meeting</span>
             </a></li>
             <li><a href="/beranda/visit">
-                <i class="uil uil-files-landscapes"></i>
+                <i class="uil uil-shopping-cart"></i>
                 <span class="link-name">Market Visit</span>
             </a></li>
             

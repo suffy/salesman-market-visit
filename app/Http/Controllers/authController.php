@@ -13,8 +13,8 @@ class authController extends Controller
 
     public function index()
     {
-        // return view('auth.index');
-        return view('landing-page.layout');
+        return view('auth.index');
+        // return view('landing-page.layout');
     }
 
     public function redirect()
@@ -52,7 +52,7 @@ class authController extends Controller
             return redirect()->to('beranda');
             
         }else{
-            return redirect()->to('auth')->with('error', 'akun anda tidak diijinkan. silahkan hubungi administrator');
+            return redirect()->to('auth')->with('error', 'akun anda tidak diijinkan. silahkan daftarkan email gmail anda terlebih dahulu');
         }
     }
 
