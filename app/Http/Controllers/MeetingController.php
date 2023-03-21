@@ -74,17 +74,37 @@ class MeetingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): Response
+    public function edit(string $id)
     {
-        //
+        $data = Meeting::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
+        return view('beranda.meeting.edit')->with("data", $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'tgl_meeting' => 'required',
+            'jenis' => 'required',
+            'keterangan' => 'required'
+        ],[
+            'tgl_meeting.required' => 'tanggal meeting wajib diisi',
+            'jenis.required' => 'jenis wajib diisi',
+            'keterangan.required' => 'keterangan wajib diisi'
+        ]);
+
+        $data = [
+            'tgl_meeting' => $request->tgl_meeting,
+            'jenis' => $request->jenis,
+            'keterangan' => $request->keterangan,
+            'created_by'    => Auth::user()->name,
+            'created_by_email'    => Auth::user()->email
+        ];
+
+        Meeting::where('id', $id)->where('created_by_email', Auth::user()->email)->update($data);
+        return redirect()->route('meeting.index')->with('success', 'berhasil update data');
     }
 
     /**

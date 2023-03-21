@@ -51,8 +51,8 @@
         </form>
 
 
-        <div class="activity-data">
-            <table id="example" class="hover" style="width:100%">
+        <div class="container-tabel">
+            <table id="example">
                 <thead>
                     <tr>
                         <th class="data-title">createdBy</th>
@@ -70,8 +70,9 @@
                             <td><span class="data-list">{{ $item->jenis }}</span></td>
                             <td><span class="data-list">{!! $item->keterangan !!}</span></td>
                             <td>
+                                <a href="{{ route('meeting.edit', $item->id) }}" class="edit-link">Edit</a>
                                 <form onsubmit="return confirm('Yakin hapus data ini ?')"
-                                    action="{{ route('meeting.destroy', $item->id) }}" class="d-inline" method="POST">
+                                    action="{{ route('meeting.destroy', $item->id) }}" class="d-inline" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     {{-- <a href="#" class="delete-link">delete</a> --}}

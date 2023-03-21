@@ -52,27 +52,32 @@
         const selectBtnUs = document.querySelector(".select-btn-us");
         const selectBtnMarguna = document.querySelector(".select-btn-marguna");
         const selectBtnIntrafood = document.querySelector(".select-btn-intrafood");
+        const selectBtnStrive = document.querySelector(".select-btn-strive");
+        const selectBtnHni = document.querySelector(".select-btn-hni");
+        const selectBtnMdj = document.querySelector(".select-btn-mdj");
 
         items = document.querySelectorAll(".item");
 
         selectBtn.addEventListener("click", () => {
-            // console.log('aaaa')
             selectBtn.classList.toggle("open");
         });
-
         selectBtnUs.addEventListener("click", () => {
-            // console.log('us')
             selectBtnUs.classList.toggle("open");
         });
-
         selectBtnMarguna.addEventListener("click", () => {
-            // console.log('us')
             selectBtnMarguna.classList.toggle("open");
         });
-
         selectBtnIntrafood.addEventListener("click", () => {
-            // console.log('us')
             selectBtnIntrafood.classList.toggle("open");
+        });
+        selectBtnStrive.addEventListener("click", () => {
+            selectBtnStrive.classList.toggle("open");
+        });
+        selectBtnHni.addEventListener("click", () => {
+            selectBtnHni.classList.toggle("open");
+        });
+        selectBtnMdj.addEventListener("click", () => {
+            selectBtnMdj.classList.toggle("open");
         });
     </script>
 
@@ -82,8 +87,8 @@
     <script>
         $('#briefing').summernote({
           placeholder: '',
-          tabsize: 2,
-          height: 120,
+          tabsize: 3,
+          height: 320,
           toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
@@ -98,8 +103,8 @@
     <script>
         $('#meeting').summernote({
           placeholder: '',
-          tabsize: 2,
-          height: 220,
+          tabsize: 3,
+          height: 320,
           toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],

@@ -29,17 +29,7 @@
                             <input type="text" name="jenis" placeholder="subject briefing .." />
                         </div>
                     </div>
-                    {{-- <div class="fields">
-                        <div class="input-field">
-                            <label>Keterangan</label>
-                            <textarea id="summernote" name="keterangan" cols="30" rows="4" class="summernotex"></textarea>
-                        </div>
-                    </div> --}}
                 </div>
-                {{-- <div class="field-button-left">
-                    <input type="submit" value="Save" class="submit-link">
-                    <a href="{{ route('briefingController.exportbriefing') }}" class="export-link">Export</a>
-                </div> --}}
             </div>
 
             <div class="details personal">
@@ -53,7 +43,7 @@
 
             <div class="field-button-left">
                 <input type="submit" value="Save" class="submit-link">
-                <a href="{{ route('briefingController.exportbriefing') }}" class="export-link">Export</a>
+                <a href="{{ route('briefingController.exportbriefing') }}" class="export-link">Export Excel</a>
             </div>
 
 
@@ -61,8 +51,8 @@
 
         {{-- <div id="summernote"></div> --}}
 
-        <div class="activity-data">
-            <table id="example" class="hover" style="width:100%">
+        <div class="container-tabel">
+            <table id="example">
                 <thead>
                     <tr>
                         <th class="data-title">createdBy</th>
@@ -80,11 +70,11 @@
                             <td><span class="data-list">{{ $item->jenis }}</span></td>
                             <td><span class="data-list">{!! $item->keterangan !!}</span></td>
                             <td>
+                                <a href="{{ route('briefing.edit', $item->id) }}" class="edit-link">Edit</a>
                                 <form onsubmit="return confirm('Yakin hapus data ini ?')"
-                                    action="{{ route('briefing.destroy', $item->id) }}" class="d-inline" method="POST">
+                                    action="{{ route('briefing.destroy', $item->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    {{-- <a href="#" class="delete-link">delete</a> --}}
                                     <button class="delete-link" type="submit" name="submit">delete</button>
                                 </form>
                             </td>

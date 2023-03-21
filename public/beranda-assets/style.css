@@ -361,6 +361,10 @@ nav.close ~ .dashboard .top {
     color: var(--text-color);
 }
 
+.container-tabel {
+    overflow: auto;
+}
+
 /* button */
 .btn-tambah {
     margin-top: 1rem;
@@ -407,11 +411,40 @@ nav.close ~ .dashboard .top {
 .delete-link {
     margin-top: 1rem;
     margin-right: 10px;
-    display: inline-block;
+    /* display: inline-block; */
     padding: 0.5rem 1rem;
     font-size: 1rem;
     color: #fff;
     background-color: #c01a1a;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+.edit-link {
+    margin-top: 1rem;
+    margin-right: 10px;
+    /* display: inline-block; */
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: salmon;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+.back-link {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: var(--black-light-color);
     cursor: pointer;
     border-radius: 0.5rem;
     outline: none;
@@ -587,55 +620,17 @@ form .buttons button,
     list-style-type: none;
 }
 
-/* details { */
-/* display: block; */
-/* width: 300px; */
-/* margin: 0px 0; */
-/* } */
-/* summary {
-    display: block;
-    background: var(--primary-color);
-    color: var(--panel-color);
-    border-radius: 5px;
-    padding: 5px;
-    cursor: pointer;
-    font-weight: bold;
-} */
-
-/* summary::-webkit-details-marker {
-    color: #ff0000;
-    background: #ffffff;
-} */
-
-/* details[open] summary::-webkit-details-marker {
-    color: #0000ff;
-    background: #00ffff;
-} */
-/* summary::-webkit-details-marker {
-    display: none;
-} */
-
-/* summary:after {
-    content: "+";
-    color: var(--panel-color);
-    float: left;
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: -5px 0px 0 0;
-    padding: 0;
-    text-align: center;
-    width: 20px;
-} */
-
-/* details[open] summary:after {
-    content: "-";
-    color: var(--border-color);
+/* .table-briefing {
+    border: 1px solid;
 } */
 
 .select-btn,
 .select-btn-us,
 .select-btn-marguna,
-.select-btn-intrafood {
+.select-btn-intrafood,
+.select-btn-strive,
+.select-btn-hni,
+.select-btn-mdj {
     display: flex;
     height: 50px;
     align-items: center;
@@ -649,7 +644,10 @@ form .buttons button,
 .select-btn .btn-text,
 .select-btn-us .btn-text-us,
 .select-btn-marguna .btn-text-marguna,
-.select-btn-intrafood .btn-text-intrafood {
+.select-btn-intrafood .btn-text-intrafood,
+.select-btn-strive .btn-text-strive,
+.select-btn-hni .btn-text-hni,
+.select-btn-mdj .btn-text-mdj {
     font-size: 17px;
     font-weight: 400;
     color: var(--text-color);
@@ -657,7 +655,10 @@ form .buttons button,
 .select-btn .arrow-dwn,
 .select-btn-us .arrow-dwn-us,
 .select-btn-marguna .arrow-dwn-marguna,
-.select-btn-intrafood .arrow-dwn-intrafood {
+.select-btn-intrafood .arrow-dwn-intrafood,
+.select-btn-strive .arrow-dwn-strive,
+.select-btn-hni .arrow-dwn-hni,
+.select-btn-mdj .arrow-dwn-mdj {
     display: flex;
     height: 21px;
     width: 21px;
@@ -681,10 +682,22 @@ form .buttons button,
 .select-btn-intrafood.open .arrow-dwn {
     transform: rotate(-180deg);
 }
+.select-btn-strive.open .arrow-dwn {
+    transform: rotate(-180deg);
+}
+.select-btn-hni.open .arrow-dwn {
+    transform: rotate(-180deg);
+}
+.select-btn-mdj.open .arrow-dwn {
+    transform: rotate(-180deg);
+}
 .list-items,
 .list-items-us,
 .list-items-marguna,
-.list-items-intrafood {
+.list-items-intrafood,
+.list-items-strive,
+.list-items-hni,
+.list-items-mdj {
     position: relative;
     margin-top: 1px;
     border-radius: 8px;
@@ -697,13 +710,19 @@ form .buttons button,
 .select-btn.open ~ .list-items,
 .select-btn-us.open ~ .list-items-us,
 .select-btn-marguna.open ~ .list-items-marguna,
-.select-btn-intrafood.open ~ .list-items-intrafood {
+.select-btn-intrafood.open ~ .list-items-intrafood,
+.select-btn-strive.open ~ .list-items-strive,
+.select-btn-hni.open ~ .list-items-hni,
+.select-btn-mdj.open ~ .list-items-mdj {
     display: block;
 }
 .list-items .item,
 .list-items-us .item-us,
 .list-items-marguna .item-marguna,
-.list-items-intrafood .item-intrafood {
+.list-items-intrafood .item-intrafood,
+.list-items-strive .item-strive,
+.list-items-hni .item-hni,
+.list-items-mdj .item-mdj {
     display: flex;
     align-items: center;
     list-style: none;
@@ -716,13 +735,19 @@ form .buttons button,
 .list-items .item:hover,
 .list-items-us .item-us:hover,
 .list-items-marguna .item-marguna:hover,
-.list-items-intrafood .item-intrafood:hover {
+.list-items-intrafood .item-intrafood:hover,
+.list-items-strive .item-strive:hover,
+.list-items-hni .item-hni:hover,
+.list-items-mdj .item-mdj:hover {
     background-color: var(--box2-color);
 }
 .item .item-text,
 .item-us .item-text-us,
 .item-marguna .item-text-marguna,
-.item-intrafood .item-text-intrafood {
+.item-intrafood .item-text-intrafood,
+.item-strive .item-text-strive,
+.item-hni .item-text-hni,
+.item-mdj .item-text-mdj {
     font-size: 16px;
     font-weight: 400;
     color: var(--black-light-color);
@@ -730,7 +755,10 @@ form .buttons button,
 .item .checkbox,
 .item-us .checkbox,
 .item-marguna .checkbox,
-.item-intrafood .checkbox {
+.item-intrafood .checkbox,
+.item-strive .checkbox,
+.item-hni .checkbox,
+.item-mdj .checkbox {
     display: flex;
     align-items: center;
     justify-content: center;

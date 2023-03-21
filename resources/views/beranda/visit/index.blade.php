@@ -33,54 +33,28 @@
                             <label>Jenis</label>
                             <select name="jenis_toko">
                                 <option value="" disabled selected>Select Jenis</option>
-                                <option value="ACC">TK ACCESORIS</option>
-                                <option value="AGY">AGENCY</option>
-                                <option value="APC">Apotik Jaringan/KF/Guardian/Century</option>
                                 <option value="APT">Apotik Reguler (Independen)</option>
-                                <option value="ASG">ASONGAN</option>
-                                <option value="BAB">BABY SHOP</option>
-                                <option value="BID">BIDAN</option>
-                                <option value="BUM">BUMBU</option>
-                                <option value="CFE">Cafe</option>
-                                <option value="CMT">COSMETIK</option>
-                                <option value="COS">TO/COSMETIC</option>
-                                <option value="DOK">DOKTER</option>
-                                <option value="ECM">E-Commerce</option>
-                                <option value="EVN">Event</option>
-                                <option value="HPM">Hypermarket</option>
-                                <option value="HRB">TOKO HERBA</option>
-                                <option value="HRK">Hotel Resto Kantin</option>
-                                <option value="HTL">Hotel</option>
-                                <option value="INS">INSTITUSI</option>
-                                <option value="KSM">KOSMETIK</option>
+                                <option value="APC">Apotik Jaringan/KF/Guardian/Century</option>
+                                <option value="TOB">Toko Obat</option>
+                                <option value="TKL">TOKO KELONTONG/KIOS ROKO /PD</option>
+                                <option value="TJM">Toko Jamu</option>
+                                <option value="TCO">Toko Kosmetik</option>
+                                <option value="WRG">Warung</option>
+                                <option value="SNC">Toko Snack</option>
                                 <option value="MML">Minimarket Lokal/Independen</option>
                                 <option value="MMN">Minimarket Nasional</option>
-                                <option value="OLH">Oleh - Oleh</option>
-                                <option value="OTH">OTHERS</option>
-                                <option value="PBF">PERUSAHAAN BESAR</option>
-                                <option value="PDC">Pedagang Besar Consumer</option>
-                                <option value="PLK">POLOKILINIK</option>
-                                <option value="PLT">PLASTIK</option>
-                                <option value="PRI">Perorangan</option>
-                                <option value="RST">Restourant</option>
-                                <option value="SAY">SAYUR</option>
-                                <option value="SMB">SEMBAKO</option>
                                 <option value="SML">Supermarket Lokal</option>
                                 <option value="SMN">Supermarket Nasional</option>
-                                <option value="SMR">Supermarket</option>
-                                <option value="SNC">Toko Snack</option>
-                                <option value="SNK">Snack</option>
-                                <option value="SUB">Sub Distributor Resmi</option>
-                                <option value="SWL">SWALAYAN</option>
-                                <option value="TBK">TOKO BAHAN KUE</option>
-                                <option value="TCO">Toko Kosmetik</option>
-                                <option value="TJM">Toko Jamu</option>
-                                <option value="TKL">TOKO KELONTONG/KIOS ROKO /PD</option>
-                                <option value="TKO">TOKO. OBAT</option>
-                                <option value="TOB">Toko Obat</option>
+                                <option value="HPM">Hypermarket</option>
+                                <option value="HRK">Hotel Resto Kantin</option>
+                                <option value="ECM">E-Commerce</option>
                                 <option value="TRD">Trading (Insidentil)</option>
-                                <option value="WRG">Warung</option>
-                                <option value="TBS">TOKO KELONTONG</option>
+                                <option value="PBF">PERUSAHAAN BESAR</option>
+                                <option value="PDC">Pedagang Besar Consumer</option>
+                                <option value="SUB">Sub Distributor Resmi</option>
+                                <option value="HEB">Toko Herbal</option>
+                                <option value="BBS">Baby Shop</option>
+                                <option value="OTH">OTHERS</option>
                             </select>
                         </div>
 
@@ -185,6 +159,69 @@
                         </div>
                     </div>
 
+                    <div class="fields-full-width">
+                        <div class="input-field">
+                            <div class="select-btn-strive" id="select-btn-strive">
+                                <span class="btn-text-strive">Strive (click to open)</span>
+                                <span class="arrow-dwn-strive">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <ul class="list-items-strive">
+                                @foreach ($data['strive'] as $item)
+                                    <li class="item-strive">
+                                        <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
+                                            name="strive[]" id="{{ $item->kodeprod }}"
+                                            value="{{ $item->kodeprod }}">
+                                        <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fields-full-width">
+                        <div class="input-field">
+                            <div class="select-btn-hni" id="select-btn-hni">
+                                <span class="btn-text-hni">HNI (click to open)</span>
+                                <span class="arrow-dwn-hni">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <ul class="list-items-hni">
+                                @foreach ($data['hni'] as $item)
+                                    <li class="item-hni">
+                                        <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
+                                            name="hni[]" id="{{ $item->kodeprod }}"
+                                            value="{{ $item->kodeprod }}">
+                                        <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fields-full-width">
+                        <div class="input-field">
+                            <div class="select-btn-mdj" id="select-btn-mdj">
+                                <span class="btn-text-mdj">MDJ (click to open)</span>
+                                <span class="arrow-dwn-mdj">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <ul class="list-items-mdj">
+                                @foreach ($data['mdj'] as $item)
+                                    <li class="item-mdj">
+                                        <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
+                                            name="mdj[]" id="{{ $item->kodeprod }}"
+                                            value="{{ $item->kodeprod }}">
+                                        <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
 
                 <br><br>
@@ -218,8 +255,8 @@
 
         <br><br>
 
-        <div class="activity-data">
-            <table id="example" class="hover" style="width:100%">
+        <div class="container-tabel">
+            <table id="example">
                 <thead>
                     <tr>
                         <th class="data-title">CreatedBy</th>

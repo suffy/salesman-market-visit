@@ -77,17 +77,37 @@ class BriefingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): Response
-    {
-        //
+    public function edit(int $id)
+    {   
+        $data = Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
+        return view('beranda.briefing.edit')->with("data", $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'tgl_briefing' => 'required',
+            'jenis' => 'required',
+            'keterangan' => 'required'
+        ],[
+            'tgl_briefing.required' => 'tanggalwajib diisi',
+            'jenis.required' => 'jenis wajib diisi',
+            'keterangan.required' => 'keterangan wajib diisi'
+        ]);
+
+        $data = [
+            'tgl_briefing' => $request->tgl_briefing,
+            'jenis' => $request->jenis,
+            'keterangan' => $request->keterangan,
+            'created_by'    => Auth::user()->name,
+            'created_by_email'    => Auth::user()->email
+        ];
+
+        Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->update($data);
+        return redirect()->route('briefing.index')->with('success', 'berhasil update data');
     }
 
     /**

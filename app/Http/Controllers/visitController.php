@@ -27,7 +27,10 @@ class visitController extends Controller
             "deltomed" => product::where("supp", "001")->get(),
             "us" => product::where("supp", "005")->get(),
             "marguna" => product::where("supp", "002")->get(),
-            "intrafood" => product::where("supp", "010")->get(),
+            "intrafood" => product::where("supp", "012")->get(),
+            "strive" => product::where("supp", "013")->get(),
+            "hni" => product::where("supp", "014")->get(),
+            "mdj" => product::where("supp", "015")->get(),
         ];
         return view('beranda.visit.index')->with("data", $data);
     }
@@ -126,6 +129,66 @@ class visitController extends Controller
                 ];
 
                 $save = productMpm::create($us);
+            }
+        }
+
+        if ($request->marguna) {
+            foreach ($request->marguna as $kodeprod_marguna) {
+
+                $marguna = [
+                    'id_ref'   => $id_header,
+                    'kodeprod' => $kodeprod_marguna
+                ];
+
+                $save = productMpm::create($marguna);
+            }
+        }
+
+        if ($request->intrafood) {
+            foreach ($request->intrafood as $kodeprod_intrafood) {
+
+                $intrafood = [
+                    'id_ref'   => $id_header,
+                    'kodeprod' => $kodeprod_intrafood
+                ];
+
+                $save = productMpm::create($intrafood);
+            }
+        }
+
+        if ($request->strive) {
+            foreach ($request->strive as $kodeprod_strive) {
+
+                $strive = [
+                    'id_ref'   => $id_header,
+                    'kodeprod' => $kodeprod_strive
+                ];
+
+                $save = productMpm::create($strive);
+            }
+        }
+
+        if ($request->hni) {
+            foreach ($request->hni as $kodeprod_hni) {
+
+                $hni = [
+                    'id_ref'   => $id_header,
+                    'kodeprod' => $kodeprod_hni
+                ];
+
+                $save = productMpm::create($hni);
+            }
+        }
+
+        if ($request->mdj) {
+            foreach ($request->mdj as $kodeprod_mdj) {
+
+                $mdj = [
+                    'id_ref'   => $id_header,
+                    'kodeprod' => $kodeprod_mdj
+                ];
+
+                $save = productMpm::create($mdj);
             }
         }
 
