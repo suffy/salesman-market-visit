@@ -71,6 +71,7 @@
                             <td><span class="data-list">{!! $item->keterangan !!}</span></td>
                             <td>
                                 <a href="{{ route('briefing.edit', $item->id) }}" class="edit-link">Edit</a>
+                                <a href="{{ url('beranda/briefing_export_pdf', $item->id) }}" target="_blank" class="pdf-link">Pdf</a>
                                 <form onsubmit="return confirm('Yakin hapus data ini ?')"
                                     action="{{ route('briefing.destroy', $item->id) }}" method="POST" style="display: inline-block;">
                                     @csrf

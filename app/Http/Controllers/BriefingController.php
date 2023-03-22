@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\BriefingsExport;
-use App\Exports\VisitsExport;
 use App\Models\Briefing;
-use Illuminate\Auth\Events\Login;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Exports\VisitsExport;
 use Illuminate\Http\Response;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\BriefingsExport;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
 
 class BriefingController extends Controller
 {
@@ -123,6 +124,12 @@ class BriefingController extends Controller
 
         $date = date("Y-m-d");
         return Excel::download(new BriefingsExport, "briefing_$date.csv", \Maatwebsite\Excel\Excel::CSV);
+    }
+
+    public function export_pdf(int $id){
+        $data = Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
+        $pdf = Pdf::loadView('beranda.briefing.pdf', ['data' => $data]);
+        return $pdf->stream('aaaa.pdf');
     }
 
 }

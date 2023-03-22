@@ -438,6 +438,21 @@ nav.close ~ .dashboard .top {
     text-decoration: none;
 }
 
+.pdf-link {
+    margin-top: 1rem;
+    margin-right: 10px;
+    /* display: inline-block; */
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: var(--box1-color);
+    cursor: pointer;
+    border-radius: 0.5rem;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
 .back-link {
     margin-top: 1rem;
     display: inline-block;

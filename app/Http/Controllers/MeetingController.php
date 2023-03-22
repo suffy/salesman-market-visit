@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\MeetingsExport;
 use App\Models\Meeting;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -120,6 +121,12 @@ class MeetingController extends Controller
 
         $date = date("Y-m-d");
         return Excel::download(new MeetingsExport, "meeting_$date.csv", \Maatwebsite\Excel\Excel::CSV);
+    }
+
+    public function export_pdf(int $id){
+        $data = Meeting::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
+        $pdf = Pdf::loadView('beranda.meeting.pdf', ['data' => $data]);
+        return $pdf->stream('aaaa.pdf');
     }
 
 }

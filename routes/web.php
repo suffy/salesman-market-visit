@@ -58,6 +58,8 @@ Route::prefix('beranda')->middleware('auth')->group(
         Route::get('exportvisit', [visitController::class, "export"])->name('visitController.exportvisit');
         Route::get('exportbriefing', [BriefingController::class, "export"])->name('briefingController.exportbriefing');
         Route::get('exportmeeting', [MeetingController::class, "export"])->name('meetingController.exportmeeting');
+        Route::get('/briefing_export_pdf/{id}',[BriefingController::class, 'export_pdf']);
+        Route::get('/meeting_export_pdf/{id}',[MeetingController::class, 'export_pdf']);
     }
 );
 

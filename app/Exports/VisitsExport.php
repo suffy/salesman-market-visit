@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\visit;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
@@ -23,7 +24,7 @@ class VisitsExport implements FromView, ShouldAutoSize
             ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
             // ->select('users.name', 'users.country', 'orders.price')
             // ->where('users.country', $this->country)
-            ->get(),
+            ->where('created_by_email', Auth::user()->email)->get(),
         ]);
     }
 
