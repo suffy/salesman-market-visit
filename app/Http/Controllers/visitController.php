@@ -56,6 +56,7 @@ class visitController extends Controller
         Session::flash('produk_kompetitor', $request->jenis_toko);
         Session::flash('catatan', $request->jenis_toko);
         Session::flash('tgl_visit', $request->tgl_visit);
+        Session::flash('catatan', $request->catatan);
         // Session::flash('foto_toko', $request->foto_toko);
 
         $request->validate([
@@ -64,6 +65,8 @@ class visitController extends Controller
             'alamat_toko' => 'required',
             'jenis_toko' => 'required',
             'tgl_visit' => 'required',
+            'produk_kompetitor' => 'required',
+            'catatan' => 'required',
             'foto_toko' => 'mimes:jpeg,jpg,png,gif',
         ],[
             'nama_toko.required' => 'nama toko wajib diisi',
@@ -71,6 +74,8 @@ class visitController extends Controller
             'alamat_toko.required' => 'alamat_toko wajib diisi',
             'jenis_toko.required' => 'jenis_toko wajib diisi',
             'tgl_visit.required' => 'tgl_visit wajib diisi',
+            'produk_kompetitor.required' => 'produk kompetitor wajib diisi',
+            'catatan.required' => 'catatan wajib diisi',
             'foto_toko.mimes' => 'foto_toko wajib sertakan dan yang diperbolehkan hanya berekstensi JPEG, JPG, PNG, GIF',
         ]);
 
@@ -93,8 +98,6 @@ class visitController extends Controller
                 'created_by'    => Auth::user()->name,
                 'created_by_email'    => Auth::user()->email
             ];
-
-
 
         }else{
             $data = [
@@ -246,24 +249,12 @@ class visitController extends Controller
         $data = visit::query()
                 ->join('product_mpm', 'product_mpm.id_ref', '=', 'visits.id')
                 ->join('products', 'product_mpm.kodeprod', '=', 'products.kodeprod')
-                ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','visits.tgl_visit','product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
+                ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','visits.tgl_visit', 'visits.foto_toko', 'visits.produk_kompetitor', 'visits.catatan', 'product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
                 ->where('created_by_email', Auth::user()->email)
                 ->where('visits.id', $id)
                 ->get();
         $pdf = Pdf::loadView('beranda.visit.pdf', ['data' => $data]);
         return $pdf->stream('aaaa.pdf');
-
-        // return view('beranda.visit.exports.visit', [
-        //     'visit' => visit::query()
-        //     ->join('product_mpm', 'product_mpm.id_ref', '=', 'visits.id')
-        //     ->join('products', 'product_mpm.kodeprod', '=', 'products.kodeprod')
-        //     // ->select('*')
-        //     ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
-        //     // ->select('users.name', 'users.country', 'orders.price')
-        //     // ->where('users.country', $this->country)
-        //     ->where('created_by_email', Auth::user()->email)->get(),
-        // ]);
-
     }
 
 }

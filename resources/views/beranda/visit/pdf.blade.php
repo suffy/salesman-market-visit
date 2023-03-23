@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Activity Semut Gajah | Market Visit</title>
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="{{ asset('landing-page') }}/style.css" />
     <style>
       * {
@@ -93,7 +92,18 @@
         line-height: 1.6;
       } 
 
-      table{
+      .table-header{
+        width: 40%;
+        border-collapse: collapse;
+      }
+
+      .table-header > td > *{
+        padding: 5px;
+        text-align: left;
+        font-size: 10px;
+      }
+
+      .table-detail{
         width: 100%;
         border-collapse: collapse;
       }
@@ -105,10 +115,12 @@
       }
 
       td {
-        padding: 15px;
+        padding: 10px;
         text-align: left;
         font-size: 10px;
       }
+
+      
 
     </style>
   </head>
@@ -124,29 +136,38 @@
         </ul>
       </nav>
     </div>
-
-      {{-- <hr class="garis"> --}}
-
       <section id="about" class="about">
-        
-       <h3>Market Visit</h3>
-  
-       <div class="row">
+      <h3>Market Visit</h3>
+      <div class="row">
         <div class="content">
-
-          <p>Tgl Visit : {{ $data[0]->tgl_visit }}</p>
-          <p>Toko : {{ $data[0]->nama_toko }}</p>
-          <p>Pemilik : {{ $data[0]->nama_pemilik }}</p>
-          <p>Type : {{ $data[0]->jenis_toko }}</p>
-          <p>Alamat : {{ $data[0]->alamat_toko }}</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="20%">Tanggal Visit</td>
+              <td width="50%">: {{ $data[0]->tgl_visit }}</td>
+              <td rowspan="4" width="30%">
+                 <img src="{{ public_path('foto/').$data[0]->foto_toko }}" style="width: 100%; height: 100px">
+              </td>
+            </tr>
+            <tr>
+              <td>Toko</td>
+              <td>: {{ $data[0]->nama_toko }}</td>
+            </tr>
+            <tr>
+              <td>Pemilik | Jenis Toko</td>
+              <td>: {{ $data[0]->nama_pemilik }} | {{ $data[0]->jenis_toko }}</td>
+            </tr>
+            <tr>
+              <td>Alamat</td>
+              <td>: {{ $data[0]->alamat_toko }}</td>
+            </tr>
+          </table>
         </div>
       </div>
-      <br>
-      
+      <br><br>
         <div class="row">
           <div class="content">
 
-            <table border="1">
+            <table class="table-detail" border="1">
               <tr>
                 <th colspan="4">Product MPM</th>
               </tr>
@@ -164,25 +185,32 @@
                 <td>{{ $item->nama_subgroup }}</td>
               </tr>
               @endforeach
-              
-              
             </table>
-
-            {{-- <p>
-              Tanggal : {{ $data->tgl_briefing }}
-            </p>
-            <p>
-              Jenis :  {{ $data->jenis }}
-            </p>
-            <p>
-              keterangan :  {!! $data->keterangan !!}
-            </p> --}}
           </div>
         </div>
+
+        <br>
+
+        <div class="row">
+          <div class="content">
+
+            <table class="table-detail" border="1">
+              <tr>
+                <th colspan="2">Product Kompetitor</th>
+              </tr>
+              <tr>
+                <th>Produk Kompetitor</th>
+                <th>Catatan</th>
+              </tr>
+              
+              <tr>
+                <td> {{ $data[0]->produk_kompetitor }} </td>
+                <td> {{ $data[0]->catatan }} </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
       </section>
-
-
-      
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> --}}
-  </body>
+    </body>
 </html>

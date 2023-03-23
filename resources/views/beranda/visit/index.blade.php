@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="input-field">
-                            <label>Nama</label>
+                            <label>Nama Toko</label>
                             <input type="text" name="nama_toko" placeholder="nama toko .." />
                         </div>
 
@@ -269,6 +269,7 @@
                         <th class="data-title">Pemilik</th>
                         <th class="data-title">Jenis</th>
                         <th class="data-title">Alamat</th>
+                        <th class="data-title">Foto</th>
                         <th class="data-title">#</th>
                     </tr>
                 </thead>
@@ -280,6 +281,12 @@
                             <td><span class="data-list">{{ $item->nama_pemilik }}</span></td>
                             <td><span class="data-list">{{ $item->jenis_toko }}</span></td>
                             <td><span class="data-list">{{ $item->alamat_toko }}</span></td>
+                            <td>
+                                {{-- <span class="data-list"> --}}
+                                {{-- {{ $item->foto_toko }} --}}
+                                <img src="{{ asset('foto')."/".$item->foto_toko }}" style="max-width:100px;max-height:100px">
+                                {{-- </span> --}}
+                            </td>
                             <td>
                                 <a href="{{ url('beranda/visit_export_pdf', $item->id) }}" target="_blank" class="pdf-link">Pdf</a>
                                 <form onsubmit="return confirm('Yakin hapus data ini ?')"
