@@ -100,11 +100,13 @@
 
       th{
         height: 5%;
+        font-size: 15px;
         text-align: center;
       }
 
       td {
         padding: 15px;
+        font-size: 12px;
         text-align: left;
       }
 
@@ -128,23 +130,38 @@
       <section id="about" class="about">
         
        <h3>Meeting</h3>
+
+       @php
+          $akhir=date_create($data->tgl_meeting_selesai);
+          $awal=date_create($data->tgl_meeting);
+          $diff=date_diff($akhir,$awal);
+      @endphp
   
         <div class="row">
           <div class="content">
 
-            <table border="1">
+            <table width="100%" border="0">
               <tr>
-                <th>Tanggal</th>
-                <th>Jenis</th>
-                <th>Keterangan</th>
+                <td width="20%">Tanggal</td>
+                <td width="80%">: {{ $data->tgl_meeting }}</td>
               </tr>
               <tr>
-                <td>{{ $data->tgl_meeting }}</td>
-                <td>{{ $data->jenis }}</td>
-                <td width="60%">{!! $data->keterangan !!}</td>
+                <td>Waktu</td>
+                <td>: {{ $diff->format("%h Jam %i Menit") }}</td>
               </tr>
-              
+              <tr>
+                <td>Jenis</td>
+                <td>: {{ $data->jenis }}</td>
+              </tr>
             </table>
+
+            <table width="100%" border="1">
+              <tr>
+                <td>{!! $data->keterangan !!}</td>
+              </tr>
+            </table>
+
+            
           </div>
         </div>
       </section>

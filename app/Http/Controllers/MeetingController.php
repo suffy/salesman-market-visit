@@ -39,21 +39,25 @@ class MeetingController extends Controller
     public function store(Request $request)
     {
         Session::flash('tgl_meeting', $request->tgl_meeting);
+        Session::flash('tgl_meeting_selesai', $request->tgl_meeting_selesai);
         Session::flash('jenis', $request->jenis);
         Session::flash('keterangan', $request->keterangan);
 
         $request->validate([
             'tgl_meeting' => 'required',
+            'tgl_meeting_selesai' => 'required',
             'jenis' => 'required',
             'keterangan' => 'required'
         ],[
-            'tgl_meeting.required' => 'tanggal meeting wajib diisi',
+            'tgl_meeting.required' => 'tanggal meeting (Mulai) wajib diisi',
+            'tgl_meeting_selesai.required' => 'tanggal meeting (Selesai) wajib diisi',
             'jenis.required' => 'jenis wajib diisi',
             'keterangan.required' => 'keterangan wajib diisi'
         ]);
 
         $data = [
             'tgl_meeting' => $request->tgl_meeting,
+            'tgl_meeting_selesai' => $request->tgl_meeting_selesai,
             'jenis' => $request->jenis,
             'keterangan' => $request->keterangan,
             'created_by'    => Auth::user()->name,
@@ -88,16 +92,19 @@ class MeetingController extends Controller
     {
         $request->validate([
             'tgl_meeting' => 'required',
+            'tgl_meeting_selesai' => 'required',
             'jenis' => 'required',
             'keterangan' => 'required'
         ],[
-            'tgl_meeting.required' => 'tanggal meeting wajib diisi',
+            'tgl_meeting.required' => 'tanggal meeting (Mulai) wajib diisi',
+            'tgl_meeting_selesai.required' => 'tanggal meeting (Selesai) wajib diisi',
             'jenis.required' => 'jenis wajib diisi',
             'keterangan.required' => 'keterangan wajib diisi'
         ]);
 
         $data = [
             'tgl_meeting' => $request->tgl_meeting,
+            'tgl_meeting_selesai' => $request->tgl_meeting_selesai,
             'jenis' => $request->jenis,
             'keterangan' => $request->keterangan,
             'created_by'    => Auth::user()->name,

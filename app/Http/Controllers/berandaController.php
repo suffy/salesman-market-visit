@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Briefing;
+use App\Models\Meeting;
 use App\Models\visit;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,29 +17,31 @@ class berandaController extends Controller
      */
     public function index()
     {
+        // $total_meeting = DB::table("meetings")
+        //             ->select(DB::raw('count(*) as total_meeting'))
+        //             // ->groupBy('nama_toko')
+        //             ->get();
 
-        // $total_data = DB::table('visits')
-        //      ->select(DB::raw('count(*) as total_data'))
-            //  ->where('status', '<>', 1)
-            //  ->groupBy('status')
-            //  ->get();
-
+        // $total_briefing = DB::table("briefings")
+        //             ->select(DB::raw('count(*) as total_briefing'))
+        //             // ->groupBy('nama_toko')
+        //             ->get();
 
         $total_data = visit::count();
-        // $total_toko = visit::groupBy("nama_toko")->count("nama_toko");
         $total_toko = DB::table("visits")
-                        // ->selectRaw('count(nama_toko) as total_toko')
-                        // ->groupBy('nama_toko')
-                        // ->get();
-                        ->select(DB::raw('count(*) as total_toko, nama_toko'))
-                        // ->where('status', '<>', 1)
-                        ->groupBy('nama_toko')
-                        ->get();
-        // dd($total_toko->count());
+                    ->select(DB::raw('count(*) as total_toko, nama_toko'))
+                    ->groupBy('nama_toko')
+                    ->get();
+
+        $total_meeting = Meeting::count();
+        $total_briefing = Briefing::count();
 
         $data = [
             "total_data" => $total_data,
             "total_toko" => $total_toko->count(),
+            "total_meeting" => $total_meeting,
+            // "total_briefing" => $total_briefing->count(),
+            "total_briefing" => $total_briefing,
         ];
         return view('beranda.index')->with("data", $data);
     }
