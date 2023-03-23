@@ -20,6 +20,11 @@
 
                     <div class="fields">
                         <div class="input-field">
+                            <label>Tgl Visit</label>
+                            <input type="date" name="tgl_visit" />
+                        </div>
+
+                        <div class="input-field">
                             <label>Nama</label>
                             <input type="text" name="nama_toko" placeholder="nama toko .." />
                         </div>
@@ -276,6 +281,7 @@
                             <td><span class="data-list">{{ $item->jenis_toko }}</span></td>
                             <td><span class="data-list">{{ $item->alamat_toko }}</span></td>
                             <td>
+                                <a href="{{ url('beranda/visit_export_pdf', $item->id) }}" target="_blank" class="pdf-link">Pdf</a>
                                 <form onsubmit="return confirm('Yakin hapus data ini ?')"
                                     action="{{ route('visit.destroy', $item->id) }}" class="d-inline" method="POST">
                                     @csrf

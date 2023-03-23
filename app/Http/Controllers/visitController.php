@@ -7,6 +7,7 @@ use App\Exports\VisitsExport;
 use App\Models\product;
 use App\Models\productMpm;
 use App\Models\visit;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -54,6 +55,7 @@ class visitController extends Controller
         Session::flash('jenis_toko', $request->jenis_toko);
         Session::flash('produk_kompetitor', $request->jenis_toko);
         Session::flash('catatan', $request->jenis_toko);
+        Session::flash('tgl_visit', $request->tgl_visit);
         // Session::flash('foto_toko', $request->foto_toko);
 
         $request->validate([
@@ -61,12 +63,14 @@ class visitController extends Controller
             'nama_pemilik' => 'required',
             'alamat_toko' => 'required',
             'jenis_toko' => 'required',
+            'tgl_visit' => 'required',
             'foto_toko' => 'mimes:jpeg,jpg,png,gif',
         ],[
             'nama_toko.required' => 'nama toko wajib diisi',
             'nama_pemilik.required' => 'nama_pemilik wajib diisi',
             'alamat_toko.required' => 'alamat_toko wajib diisi',
             'jenis_toko.required' => 'jenis_toko wajib diisi',
+            'tgl_visit.required' => 'tgl_visit wajib diisi',
             'foto_toko.mimes' => 'foto_toko wajib sertakan dan yang diperbolehkan hanya berekstensi JPEG, JPG, PNG, GIF',
         ]);
 
@@ -82,6 +86,7 @@ class visitController extends Controller
                 'nama_pemilik' => $request->nama_pemilik,
                 'alamat_toko' => $request->alamat_toko,
                 'jenis_toko' => $request->jenis_toko,
+                'tgl_visit' => $request->tgl_visit,
                 'foto_toko' => $foto_baru,
                 'produk_kompetitor' => $request->produk_kompetitor,
                 'catatan' => $request->catatan,
@@ -97,6 +102,7 @@ class visitController extends Controller
                 'nama_pemilik' => $request->nama_pemilik,
                 'alamat_toko' => $request->alamat_toko,
                 'jenis_toko' => $request->jenis_toko,
+                'tgl_visit' => $request->tgl_visit,
                 'produk_kompetitor' => $request->produk_kompetitor,
                 'catatan' => $request->catatan,
                 'created_by'    => Auth::user()->name,
@@ -233,6 +239,31 @@ class visitController extends Controller
 
         $date = date("Y-m-d");
         return Excel::download(new VisitsExport, "visits_$date.csv", \Maatwebsite\Excel\Excel::CSV);
+    }
+
+    public function export_pdf(int $id){
+        // $data = visit::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
+        $data = visit::query()
+                ->join('product_mpm', 'product_mpm.id_ref', '=', 'visits.id')
+                ->join('products', 'product_mpm.kodeprod', '=', 'products.kodeprod')
+                ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','visits.tgl_visit','product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
+                ->where('created_by_email', Auth::user()->email)
+                ->where('visits.id', $id)
+                ->get();
+        $pdf = Pdf::loadView('beranda.visit.pdf', ['data' => $data]);
+        return $pdf->stream('aaaa.pdf');
+
+        // return view('beranda.visit.exports.visit', [
+        //     'visit' => visit::query()
+        //     ->join('product_mpm', 'product_mpm.id_ref', '=', 'visits.id')
+        //     ->join('products', 'product_mpm.kodeprod', '=', 'products.kodeprod')
+        //     // ->select('*')
+        //     ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
+        //     // ->select('users.name', 'users.country', 'orders.price')
+        //     // ->where('users.country', $this->country)
+        //     ->where('created_by_email', Auth::user()->email)->get(),
+        // ]);
+
     }
 
 }
