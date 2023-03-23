@@ -117,6 +117,30 @@
         });
       </script>
 
+      <script>
+
+        var latitude = document.getElementById("latitude");
+        var longitude = document.getElementById("longitude");
+
+        getLocation();
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                latitude.value = "Geolocation is not supported by this browser.";
+                longitude.value = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            latitude.value = position.coords.latitude;
+            longitude.value = position.coords.longitude;
+        }
+
+
+      </script>
+
 
 </body>
 </html>

@@ -246,6 +246,19 @@
                             <textarea name="catatan" cols="30" rows="4"></textarea>
                         </div>
                     </div>
+
+                    <div class="fields">
+
+                        <div class="input-field">
+                            <label>latitude</label>
+                            <input type="text" name="latitude" id="latitude" value="">
+                        </div>
+                        <div class="input-field">
+                            <label>longitude</label>
+                            <input type="text" name="longitude" id="longitude" value="">
+                        </div>
+                    </div>
+
                 </div>
 
                 {{-- <input type="button" value="submit" > --}}
