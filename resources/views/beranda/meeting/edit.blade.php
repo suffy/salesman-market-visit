@@ -18,8 +18,14 @@
                 <div class="details personal">
                     <div class="fields">
                         <div class="input-field">
-                            <label>Tanggal Meeting</label>
-                            <input type="date" name="tgl_meeting" value="{{ $data->tgl_meeting }}" />
+                            <label>Tanggal Meeting (Mulai)</label>
+                            <input type="datetime-local" name="tgl_meeting" value="{{ $data->tgl_meeting }}" />
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Tanggal Meeting (Selesai)</label>
+                            <input type="datetime-local" name="tgl_meeting_selesai" value="{{ $data->tgl_meeting_selesai }}" />
                         </div>
                     </div>
                     <div class="fields">
@@ -49,7 +55,7 @@
         </form>
 
 
-        
+
     </div>
 
     </div>

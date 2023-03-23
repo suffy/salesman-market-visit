@@ -19,8 +19,14 @@
 
                     <div class="fields">
                         <div class="input-field">
-                            <label>Tanggal Meeting</label>
-                            <input type="date" name="tgl_meeting" />
+                            <label>Tanggal Meeting (Mulai)</label>
+                            <input type="datetime-local" name="tgl_meeting" />
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Tanggal Meeting (Selesai)</label>
+                            <input type="datetime-local" name="tgl_meeting_selesai" />
                         </div>
                     </div>
                     <div class="fields">
@@ -57,6 +63,7 @@
                     <tr>
                         <th class="data-title">createdBy</th>
                         <th class="data-title">Tanggal</th>
+                        <th class="data-title">Waktu</th>
                         <th class="data-title">Jenis</th>
                         <th class="data-title">Notulen</th>
                         <th class="data-title">#</th>
@@ -64,16 +71,25 @@
                 </thead>
                 <tbody>
                     @foreach ($data['query'] as $item)
+                        @php
+                            $akhir=date_create($item->tgl_meeting_selesai);
+                            $awal=date_create($item->tgl_meeting);
+                            $diff=date_diff($akhir,$awal);
+                        @endphp
+
                         <tr>
                             <td><span class="data-list">{{ $item->created_by }}</span></td>
-                            <td><span class="data-list">{{ $item->tgl_meeting }}</span></td>
+                            <td><span class="data-list">{{ date('d-m-Y', strtotime($item->tgl_meeting)) }}</span></td>
+                            <td><span class="data-list">{{ $diff->format("%h Jam %i Menit")}}</span></td>
                             <td><span class="data-list">{{ $item->jenis }}</span></td>
                             <td><span class="data-list">{!! $item->keterangan !!}</span></td>
                             <td>
                                 <a href="{{ route('meeting.edit', $item->id) }}" class="edit-link">Edit</a>
-                                <a href="{{ url('beranda/meeting_export_pdf', $item->id) }}" target="_blank" class="pdf-link">Pdf</a>
+                                <a href="{{ url('beranda/meeting_export_pdf', $item->id) }}" target="_blank"
+                                    class="pdf-link">Pdf</a>
                                 <form onsubmit="return confirm('Yakin hapus data ini ?')"
-                                    action="{{ route('meeting.destroy', $item->id) }}" class="d-inline" method="POST" style="display: inline-block;">
+                                    action="{{ route('meeting.destroy', $item->id) }}" class="d-inline" method="POST"
+                                    style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     {{-- <a href="#" class="delete-link">delete</a> --}}
