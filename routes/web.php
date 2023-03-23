@@ -61,6 +61,7 @@ Route::prefix('beranda')->middleware('auth')->group(
         Route::get('/briefing_export_pdf/{id}',[BriefingController::class, 'export_pdf']);
         Route::get('/meeting_export_pdf/{id}',[MeetingController::class, 'export_pdf']);
         Route::get('/visit_export_pdf/{id}',[VisitController::class, 'export_pdf']);
+        Route::get('/location', [BriefingController::class, 'location']);
     }
 );
 

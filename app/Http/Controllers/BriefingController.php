@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
+use Stevebauman\Location\Facades\Location;
+use Stevebauman\Location\Location as LocationLocation;
 
 class BriefingController extends Controller
 {
@@ -130,6 +132,28 @@ class BriefingController extends Controller
         $data = Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
         $pdf = Pdf::loadView('beranda.briefing.pdf', ['data' => $data]);
         return $pdf->stream('aaaa.pdf');
+    }
+
+    public function location(Request $request){
+
+        // dd(Location::get('103.85.150.65'));
+        // if ($position = Location::get()) {
+        //     // Successfully retrieved position.
+        //     echo $position->countryName;
+        // } else {
+        //     // Failed retrieving position.
+        // }
+
+
+        // $userIP = $request->ip();
+        $userIP = $_SERVER['REMOTE_ADDR'];
+        // dd($userIP);
+
+
+        $location = Location::get($userIP);
+
+        dd($location);
+
     }
 
 }
