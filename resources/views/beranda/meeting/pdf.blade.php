@@ -117,7 +117,9 @@
 
     <div class="header">
       <nav>
-        <a href="{{ url('/') }}" class="logo"><img src="D:\project\laravel10\smv\public\landing-page\images\icon-semut-gajah.png" id="logo" /></a>
+        <a href="{{ url('/') }}" class="logo">
+        <img src="{{ public_path('foto/icon-semut-gajah.png') }}">
+        </a>
         <ul>
           <li><a href="https://semutgajah.com/">semutgajah.com</a> | </li>
           <li><a href="https://play.google.com/store/apps/details?id=com.semutgajah">android</a></li>
