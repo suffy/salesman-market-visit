@@ -35,6 +35,7 @@
                             <input type="text" name="jenis" placeholder="jenis meeting .." />
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -45,6 +46,18 @@
                         Notulen Meeting :<br>
                         Peserta: <br>Hasil :
                     </textarea>
+                </div>
+                
+            </div>
+            <div class="fields">
+
+                <div class="input-field">
+                    <label>latitude</label>
+                    <input type="text" name="latitude" id="latitude" readonly>
+                </div>
+                <div class="input-field">
+                    <label>longitude</label>
+                    <input type="text" name="longitude" id="longitude" readonly>
                 </div>
             </div>
 

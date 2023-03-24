@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -43,16 +44,26 @@ class MeetingController extends Controller
         Session::flash('jenis', $request->jenis);
         Session::flash('keterangan', $request->keterangan);
 
+        $response = Http::get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=-6.2291164&longitude=106.6554073&localityLanguage=en')->json();
+
+        $city = $response['city'];
+        $locality = $response['locality'];
+        $principalSubdivision = $response['principalSubdivision'];
+
         $request->validate([
             'tgl_meeting' => 'required',
             'tgl_meeting_selesai' => 'required',
             'jenis' => 'required',
-            'keterangan' => 'required'
+            'keterangan' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
         ],[
             'tgl_meeting.required' => 'tanggal meeting (Mulai) wajib diisi',
             'tgl_meeting_selesai.required' => 'tanggal meeting (Selesai) wajib diisi',
             'jenis.required' => 'jenis wajib diisi',
-            'keterangan.required' => 'keterangan wajib diisi'
+            'keterangan.required' => 'keterangan wajib diisi',
+            'latitude.required' => 'latitude wajib diisi',
+            'longitude.required' => 'longitude wajib diisi'
         ]);
 
         $data = [
@@ -61,7 +72,12 @@ class MeetingController extends Controller
             'jenis' => $request->jenis,
             'keterangan' => $request->keterangan,
             'created_by'    => Auth::user()->name,
-            'created_by_email'    => Auth::user()->email
+            'created_by_email'    => Auth::user()->email,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'provinsi' => $principalSubdivision,
+            'kota' => $city,
+            'kecamatan' => $locality
         ];
 
         $save = Meeting::create($data);

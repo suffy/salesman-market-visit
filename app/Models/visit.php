@@ -9,5 +9,5 @@ class visit extends Model
 {
     use HasFactory;
     protected $table = "visits";
-    protected $fillable = ["nama_toko","nama_pemilik","jenis_toko","alamat_toko","foto_toko","produk_kompetitor","catatan","created_by","created_by_email","tgl_visit"];
+    protected $fillable = ["nama_toko","nama_pemilik","jenis_toko","alamat_toko","foto_toko","produk_kompetitor","catatan","created_by","created_by_email","tgl_visit", "latitude", "longitude", "provinsi", "kota", "kecamatan"];
 }

@@ -39,7 +39,22 @@
                         <textarea id="briefing" name="keterangan" cols="30" rows="4" class="summernotex"></textarea>
                     </div>
                 </div>
+
+                <div class="fields">
+
+                    <div class="input-field">
+                        <label>latitude</label>
+                        <input type="text" name="latitude" id="latitude" readonly>
+                    </div>
+                    <div class="input-field">
+                        <label>longitude</label>
+                        <input type="text" name="longitude" id="longitude" readonly>
+                    </div>
+                </div>
+                
             </div>
+
+            
 
             <div class="field-button-left">
                 <input type="submit" value="Save" class="submit-link">

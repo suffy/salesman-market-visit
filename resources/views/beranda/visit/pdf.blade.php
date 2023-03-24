@@ -147,7 +147,9 @@
               <td width="20%">Tanggal Visit</td>
               <td width="50%">: {{ $data[0]->tgl_visit }}</td>
               <td rowspan="4" width="30%">
-                 <img src="{{ public_path('foto/').$data[0]->foto_toko }}" style="width: 100%; height: 100px">
+                @if ($data[0]->foto_toko)    
+                <img src="{{ public_path('foto/').$data[0]->foto_toko }}" style="width: 100%; height: 100px">
+                @endif
               </td>
             </tr>
             <tr>
@@ -160,7 +162,7 @@
             </tr>
             <tr>
               <td>Alamat</td>
-              <td>: {{ $data[0]->alamat_toko }}</td>
+              <td>: {{ $data[0]->alamat_toko." | ".$data[0]->kecamatan." | ".$data[0]->kota." | ".$data[0]->provinsi }}</td>
             </tr>
           </table>
         </div>

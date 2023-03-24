@@ -14,6 +14,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 
 class visitController extends Controller
@@ -59,6 +60,12 @@ class visitController extends Controller
         Session::flash('catatan', $request->catatan);
         // Session::flash('foto_toko', $request->foto_toko);
 
+        $response = Http::get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=-6.2291164&longitude=106.6554073&localityLanguage=en')->json();
+
+        $city = $response['city'];
+        $locality = $response['locality'];
+        $principalSubdivision = $response['principalSubdivision'];
+
         $request->validate([
             'nama_toko' => 'required',
             'nama_pemilik' => 'required',
@@ -68,6 +75,8 @@ class visitController extends Controller
             'produk_kompetitor' => 'required',
             'catatan' => 'required',
             'foto_toko' => 'mimes:jpeg,jpg,png,gif',
+            'latitude' => 'required',
+            'longitude' => 'required',
         ],[
             'nama_toko.required' => 'nama toko wajib diisi',
             'nama_pemilik.required' => 'nama_pemilik wajib diisi',
@@ -77,6 +86,8 @@ class visitController extends Controller
             'produk_kompetitor.required' => 'produk kompetitor wajib diisi',
             'catatan.required' => 'catatan wajib diisi',
             'foto_toko.mimes' => 'foto_toko wajib sertakan dan yang diperbolehkan hanya berekstensi JPEG, JPG, PNG, GIF',
+            'latitude.required' => 'latitude wajib diisi',
+            'longitude.required' => 'longitude wajib diisi'
         ]);
 
         if ($request->hasFile('foto_toko')) {
@@ -96,6 +107,11 @@ class visitController extends Controller
                 'produk_kompetitor' => $request->produk_kompetitor,
                 'catatan' => $request->catatan,
                 'created_by'    => Auth::user()->name,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+                'provinsi' => $principalSubdivision,
+                'kota' => $city,
+                'kecamatan' => $locality,
                 'created_by_email'    => Auth::user()->email
             ];
 
@@ -108,6 +124,11 @@ class visitController extends Controller
                 'tgl_visit' => $request->tgl_visit,
                 'produk_kompetitor' => $request->produk_kompetitor,
                 'catatan' => $request->catatan,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+                'provinsi' => $principalSubdivision,
+                'kota' => $city,
+                'kecamatan' => $locality,
                 'created_by'    => Auth::user()->name,
                 'created_by_email'    => Auth::user()->email
             ];
@@ -249,7 +270,7 @@ class visitController extends Controller
         $data = visit::query()
                 ->join('product_mpm', 'product_mpm.id_ref', '=', 'visits.id')
                 ->join('products', 'product_mpm.kodeprod', '=', 'products.kodeprod')
-                ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','visits.tgl_visit', 'visits.foto_toko', 'visits.produk_kompetitor', 'visits.catatan', 'product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
+                ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','visits.tgl_visit', 'visits.foto_toko', 'visits.produk_kompetitor', 'visits.catatan', 'visits.provinsi', 'visits.kota', 'visits.kecamatan', 'product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
                 ->where('created_by_email', Auth::user()->email)
                 ->where('visits.id', $id)
                 ->get();

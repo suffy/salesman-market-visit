@@ -127,9 +127,11 @@
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
+                console.log('ok')
             } else {
                 latitude.value = "Geolocation is not supported by this browser.";
                 longitude.value = "Geolocation is not supported by this browser.";
+                console.log('no')
             }
         }
 

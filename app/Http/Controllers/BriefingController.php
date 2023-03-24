@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Stevebauman\Location\Facades\Location;
 use Stevebauman\Location\Location as LocationLocation;
@@ -47,14 +48,24 @@ class BriefingController extends Controller
         Session::flash('jenis', $request->jenis);
         Session::flash('keterangan', $request->keterangan);
 
+        $response = Http::get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=-6.2291164&longitude=106.6554073&localityLanguage=en')->json();
+
+        $city = $response['city'];
+        $locality = $response['locality'];
+        $principalSubdivision = $response['principalSubdivision'];
+
         $request->validate([
             'tgl_briefing' => 'required',
             'jenis' => 'required',
-            'keterangan' => 'required'
+            'keterangan' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
         ],[
             'tgl_briefing.required' => 'tanggalwajib diisi',
             'jenis.required' => 'jenis wajib diisi',
-            'keterangan.required' => 'keterangan wajib diisi'
+            'keterangan.required' => 'keterangan wajib diisi',
+            'latitude.required' => 'latitude wajib diisi',
+            'longitude.required' => 'longitude wajib diisi'
         ]);
 
         $data = [
@@ -62,7 +73,12 @@ class BriefingController extends Controller
             'jenis' => $request->jenis,
             'keterangan' => $request->keterangan,
             'created_by'    => Auth::user()->name,
-            'created_by_email'    => Auth::user()->email
+            'created_by_email'    => Auth::user()->email,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'provinsi' => $principalSubdivision,
+            'kota' => $city,
+            'kecamatan' => $locality
         ];
 
         $save = Briefing::create($data);
@@ -106,7 +122,12 @@ class BriefingController extends Controller
             'jenis' => $request->jenis,
             'keterangan' => $request->keterangan,
             'created_by'    => Auth::user()->name,
-            'created_by_email'    => Auth::user()->email
+            'created_by_email'    => Auth::user()->email,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'provinsi' => $principalSubdivision,
+            'kota' => $city,
+            'kecamatan' => $locality
         ];
 
         Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->update($data);
@@ -132,28 +153,6 @@ class BriefingController extends Controller
         $data = Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
         $pdf = Pdf::loadView('beranda.briefing.pdf', ['data' => $data]);
         return $pdf->stream('aaaa.pdf');
-    }
-
-    public function location(Request $request){
-
-        // dd(Location::get('103.85.150.65'));
-        // if ($position = Location::get()) {
-        //     // Successfully retrieved position.
-        //     echo $position->countryName;
-        // } else {
-        //     // Failed retrieving position.
-        // }
-
-
-        // $userIP = $request->ip();
-        $userIP = $_SERVER['REMOTE_ADDR'];
-        // dd($userIP);
-
-
-        $location = Location::get($userIP);
-
-        dd($location);
-
     }
 
 }
