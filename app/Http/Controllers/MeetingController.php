@@ -44,7 +44,7 @@ class MeetingController extends Controller
         Session::flash('jenis', $request->jenis);
         Session::flash('keterangan', $request->keterangan);
 
-        $response = Http::get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=-6.2291164&longitude=106.6554073&localityLanguage=en')->json();
+        $response = Http::get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' . $request->latitude . '&longitude=' . $request->longitude . '&localityLanguage=en')->json();
 
         $city = $response['city'];
         $locality = $response['locality'];
@@ -57,7 +57,7 @@ class MeetingController extends Controller
             'keterangan' => 'required',
             'latitude' => 'required',
             'longitude' => 'required'
-        ],[
+        ], [
             'tgl_meeting.required' => 'tanggal meeting (Mulai) wajib diisi',
             'tgl_meeting_selesai.required' => 'tanggal meeting (Selesai) wajib diisi',
             'jenis.required' => 'jenis wajib diisi',
@@ -111,7 +111,7 @@ class MeetingController extends Controller
             'tgl_meeting_selesai' => 'required',
             'jenis' => 'required',
             'keterangan' => 'required'
-        ],[
+        ], [
             'tgl_meeting.required' => 'tanggal meeting (Mulai) wajib diisi',
             'tgl_meeting_selesai.required' => 'tanggal meeting (Selesai) wajib diisi',
             'jenis.required' => 'jenis wajib diisi',
@@ -140,16 +140,17 @@ class MeetingController extends Controller
         return redirect()->route('meeting.index')->with('success', 'berhasil delete data');
     }
 
-    public function export(){
+    public function export()
+    {
 
         $date = date("Y-m-d");
         return Excel::download(new MeetingsExport, "meeting_$date.csv", \Maatwebsite\Excel\Excel::CSV);
     }
 
-    public function export_pdf(int $id){
+    public function export_pdf(int $id)
+    {
         $data = Meeting::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
         $pdf = Pdf::loadView('beranda.meeting.pdf', ['data' => $data]);
         return $pdf->stream('aaaa.pdf');
     }
-
 }
