@@ -131,11 +131,11 @@
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
-                console.log('ok')
+                // console.log('ok')
             } else {
                 latitude.value = "Geolocation is not supported by this browser.";
                 longitude.value = "Geolocation is not supported by this browser.";
-                console.log('no')
+                // console.log('no')
             }
         }
 
@@ -143,26 +143,49 @@
             latitude.value = position.coords.latitude;
             longitude.value = position.coords.longitude;
             accuracy.value = position.coords.accuracy;
-            console.log(position.coords.latitude)
+            // console.log(latitude.value)
+            // console.log(longitude.value)
+
+            fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=` + latitude.value + `&longitude=` + longitude.value + `&localityLanguage=en`)
+
+                // console.log(x)
+
+                .then((response) => response.json())
+                .then(
+                    (data) => {
+                        // console.log(data['city'])
+                        provinsi.value = data['principalSubdivision'];
+                        kota.value = data['city'];
+                        kecamatan.value = data['locality'];
+                    }
+
+                );
+
         }
 
+        // console.log(lat)
+
         // x = latitude;
-        // console.log(x)
+        // console.log(latitude)
+        // console.log(longitude)
+        // console.log(accuracy)
 
-        fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=` + latitude + `&longitude=` + longitude + `&localityLanguage=en`)
 
-            // console.log(x)
 
-            .then((response) => response.json())
-            .then(
-                (data) => {
-                    console.log(data['city'])
-                    provinsi.value = data['principalSubdivision'];
-                    kota.value = data['city'];
-                    kecamatan.value = data['locality'];
-                }
+        // fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=` + latitude + `&longitude=` + longitude + `&localityLanguage=en`)
 
-            );
+        //     // console.log(x)
+
+        //     .then((response) => response.json())
+        //     .then(
+        //         (data) => {
+        //             console.log(data['city'])
+        //             provinsi.value = data['principalSubdivision'];
+        //             kota.value = data['city'];
+        //             kecamatan.value = data['locality'];
+        //         }
+
+        //     );
     </script>
 
 
