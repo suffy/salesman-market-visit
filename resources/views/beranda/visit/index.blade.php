@@ -255,6 +255,34 @@
                         </div>
                     </div>
 
+                    <div class="fields">
+
+                        <div class="input-field">
+                            <label>latitude (* diinput otomatis)</label>
+                            <input type="text" name="latitude" id="latitude" readonly>
+                        </div>
+                        <div class="input-field">
+                            <label>longitude (* diinput otomatis)</label>
+                            <input type="text" name="longitude" id="longitude" readonly>
+                        </div>
+                        <div class="input-field">
+                            <label>accuracy (* diinput otomatis)</label>
+                            <input type="text" name="accuracy" id="accuracy" readonly>
+                        </div>
+                        <div class="input-field">
+                            <label>Provinsi (* diinput otomatis)</label>
+                            <input type="text" name="provinsi" id="provinsi" readonly>
+                        </div>
+                        <div class="input-field">
+                            <label>Kota (* diinput otomatis)</label>
+                            <input type="text" name="kota" id="kota" readonly>
+                        </div>
+                        <div class="input-field">
+                            <label>Kecamatan (* diinput otomatis)</label>
+                            <input type="text" name="kecamatan" id="kecamatan" readonly>
+                        </div>
+                    </div>
+
                 </div>
 
                 {{-- <input type="button" value="submit" > --}}
