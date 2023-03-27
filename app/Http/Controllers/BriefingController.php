@@ -24,11 +24,12 @@ class BriefingController extends Controller
      */
     public function index()
     {
+
         $data = [
             "query" => Briefing::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
         ];
-        return view('beranda.briefing.index')->with("data", $data);
 
+        return view('beranda.briefing.index')->with("data", $data);
     }
 
     /**
@@ -48,7 +49,7 @@ class BriefingController extends Controller
         Session::flash('jenis', $request->jenis);
         Session::flash('keterangan', $request->keterangan);
 
-        $response = Http::get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=-6.2291164&longitude=106.6554073&localityLanguage=en')->json();
+        $response = Http::get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' . $request->latitude . '&longitude=' . $request->longitude . '&localityLanguage=en')->json();
 
         $city = $response['city'];
         $locality = $response['locality'];
@@ -60,7 +61,7 @@ class BriefingController extends Controller
             'keterangan' => 'required',
             'latitude' => 'required',
             'longitude' => 'required'
-        ],[
+        ], [
             'tgl_briefing.required' => 'tanggalwajib diisi',
             'jenis.required' => 'jenis wajib diisi',
             'keterangan.required' => 'keterangan wajib diisi',
@@ -97,7 +98,7 @@ class BriefingController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(int $id)
-    {   
+    {
         $data = Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
         return view('beranda.briefing.edit')->with("data", $data);
     }
@@ -111,7 +112,7 @@ class BriefingController extends Controller
             'tgl_briefing' => 'required',
             'jenis' => 'required',
             'keterangan' => 'required'
-        ],[
+        ], [
             'tgl_briefing.required' => 'tanggalwajib diisi',
             'jenis.required' => 'jenis wajib diisi',
             'keterangan.required' => 'keterangan wajib diisi'
@@ -122,12 +123,7 @@ class BriefingController extends Controller
             'jenis' => $request->jenis,
             'keterangan' => $request->keterangan,
             'created_by'    => Auth::user()->name,
-            'created_by_email'    => Auth::user()->email,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'provinsi' => $principalSubdivision,
-            'kota' => $city,
-            'kecamatan' => $locality
+            'created_by_email'    => Auth::user()->email
         ];
 
         Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->update($data);
@@ -143,16 +139,17 @@ class BriefingController extends Controller
         return redirect()->route('briefing.index')->with('success', 'berhasil delete data');
     }
 
-    public function export(){
+    public function export()
+    {
 
         $date = date("Y-m-d");
         return Excel::download(new BriefingsExport, "briefing_$date.csv", \Maatwebsite\Excel\Excel::CSV);
     }
 
-    public function export_pdf(int $id){
+    public function export_pdf(int $id)
+    {
         $data = Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
         $pdf = Pdf::loadView('beranda.briefing.pdf', ['data' => $data]);
-        return $pdf->stream('aaaa.pdf');
+        return $pdf->stream('briefing.pdf');
     }
-
 }
