@@ -21,45 +21,45 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>Tgl Visit</label>
-                            <input type="date" name="tgl_visit" />
+                            <input type="date" name="tgl_visit" value="{{ Session::get('tgl_visit') }}" />
                         </div>
 
                         <div class="input-field">
                             <label>Nama Toko</label>
-                            <input type="text" name="nama_toko" placeholder="nama toko .." />
+                            <input type="text" name="nama_toko" placeholder="nama toko .." value="{{ Session::get('nama_toko') }}" />
                         </div>
 
                         <div class="input-field">
                             <label>Pemilik</label>
-                            <input type="text" name="nama_pemilik" placeholder="nama pemilik .." />
+                            <input type="text" name="nama_pemilik" placeholder="nama pemilik .." value="{{ Session::get('nama_pemilik') }}" />
                         </div>
 
                         <div class="input-field">
                             <label>Jenis</label>
                             <select name="jenis_toko">
-                                <option value="" disabled selected>Select Jenis</option>
-                                <option value="APT">Apotik Reguler (Independen)</option>
-                                <option value="APC">Apotik Jaringan/KF/Guardian/Century</option>
-                                <option value="TOB">Toko Obat</option>
-                                <option value="TKL">TOKO KELONTONG/KIOS ROKO /PD</option>
-                                <option value="TJM">Toko Jamu</option>
-                                <option value="TCO">Toko Kosmetik</option>
-                                <option value="WRG">Warung</option>
-                                <option value="SNC">Toko Snack</option>
-                                <option value="MML">Minimarket Lokal/Independen</option>
-                                <option value="MMN">Minimarket Nasional</option>
-                                <option value="SML">Supermarket Lokal</option>
-                                <option value="SMN">Supermarket Nasional</option>
-                                <option value="HPM">Hypermarket</option>
-                                <option value="HRK">Hotel Resto Kantin</option>
-                                <option value="ECM">E-Commerce</option>
-                                <option value="TRD">Trading (Insidentil)</option>
-                                <option value="PBF">PERUSAHAAN BESAR</option>
-                                <option value="PDC">Pedagang Besar Consumer</option>
-                                <option value="SUB">Sub Distributor Resmi</option>
-                                <option value="HEB">Toko Herbal</option>
-                                <option value="BBS">Baby Shop</option>
-                                <option value="OTH">OTHERS</option>
+                                <option value="" @if (old('jenis_toko') == "") {{ 'selected' }} @endif>Select Jenis</option>
+                                <option value="APT" @if (old('jenis_toko') == "APT") {{ 'selected' }} @endif>Apotik Reguler (Independen)</option>
+                                <option value="APC" @if (old('jenis_toko') == "APC") {{ 'selected' }} @endif>Apotik Jaringan/KF/Guardian/Century</option>
+                                <option value="TOB" @if (old('jenis_toko') == "TOB") {{ 'selected' }} @endif>Toko Obat</option>
+                                <option value="TKL" @if (old('jenis_toko') == "TKL") {{ 'selected' }} @endif>TOKO KELONTONG/KIOS ROKO /PD</option>
+                                <option value="TJM" @if (old('jenis_toko') == "TJM") {{ 'selected' }} @endif>Toko Jamu</option>
+                                <option value="TCO" @if (old('jenis_toko') == "TCO") {{ 'selected' }} @endif>Toko Kosmetik</option>
+                                <option value="WRG" @if (old('jenis_toko') == "WRG") {{ 'selected' }} @endif>Warung</option>
+                                <option value="SNC" @if (old('jenis_toko') == "SNC") {{ 'selected' }} @endif>Toko Snack</option>
+                                <option value="MML" @if (old('jenis_toko') == "MML") {{ 'selected' }} @endif>Minimarket Lokal/Independen</option>
+                                <option value="MMN" @if (old('jenis_toko') == "MMN") {{ 'selected' }} @endif>Minimarket Nasional</option>
+                                <option value="SML" @if (old('jenis_toko') == "SML") {{ 'selected' }} @endif>Supermarket Lokal</option>
+                                <option value="SMN" @if (old('jenis_toko') == "SMN") {{ 'selected' }} @endif>Supermarket Nasional</option>
+                                <option value="HPM" @if (old('jenis_toko') == "HPM") {{ 'selected' }} @endif>Hypermarket</option>
+                                <option value="HRK" @if (old('jenis_toko') == "HRK") {{ 'selected' }} @endif>Hotel Resto Kantin</option>
+                                <option value="ECM" @if (old('jenis_toko') == "ECM") {{ 'selected' }} @endif>E-Commerce</option>
+                                <option value="TRD" @if (old('jenis_toko') == "TRD") {{ 'selected' }} @endif>Trading (Insidentil)</option>
+                                <option value="PBF" @if (old('jenis_toko') == "PBF") {{ 'selected' }} @endif>PERUSAHAAN BESAR</option>
+                                <option value="PDC" @if (old('jenis_toko') == "PDC") {{ 'selected' }} @endif>Pedagang Besar Consumer</option>
+                                <option value="SUB" @if (old('jenis_toko') == "SUB") {{ 'selected' }} @endif>Sub Distributor Resmi</option>
+                                <option value="HEB" @if (old('jenis_toko') == "HEB") {{ 'selected' }} @endif>Toko Herbal</option>
+                                <option value="BBS" @if (old('jenis_toko') == "BBS") {{ 'selected' }} @endif>Baby Shop</option>
+                                <option value="OTH" @if (old('jenis_toko') == "OTH") {{ 'selected' }} @endif>OTHERS</option>
                             </select>
                         </div>
 
@@ -70,7 +70,7 @@
 
                         <div class="input-field">
                             <label>Alamat</label>
-                            <textarea name="alamat_toko" cols="30" rows="4"></textarea>
+                            <textarea name="alamat_toko" cols="30" rows="4">{{ Session::get('alamat_toko') }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                                 @foreach ($data['herbal'] as $item)
                                     <li class="item">
                                         <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
-                                            name="deltomed[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}">
+                                            name="deltomed[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}" {{ (is_array(old('deltomed')) && in_array($item->kodeprod, old('deltomed'))) ? ' checked' : '' }} >
                                         <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
                                     </li>
                                 @endforeach
@@ -111,7 +111,7 @@
                                 @foreach ($data['candy'] as $item)
                                     <li class="item-candy">
                                         <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
-                                            name="candy[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}">
+                                            name="candy[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}" {{ (is_array(old('candy')) && in_array($item->kodeprod, old('candy'))) ? ' checked' : '' }}>
                                         <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
                                     </li>
                                 @endforeach
@@ -132,7 +132,7 @@
                                 @foreach ($data['us'] as $item)
                                     <li class="item-us">
                                         <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
-                                            name="us[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}">
+                                            name="us[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}" {{ (is_array(old('us')) && in_array($item->kodeprod, old('us'))) ? ' checked' : '' }}>
                                         <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
                                     </li>
                                 @endforeach
@@ -152,7 +152,7 @@
                                 @foreach ($data['marguna'] as $item)
                                     <li class="item-marguna">
                                         <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
-                                            name="marguna[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}">
+                                            name="marguna[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}" {{ (is_array(old('marguna')) && in_array($item->kodeprod, old('marguna'))) ? ' checked' : '' }}>
                                         <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
                                     </li>
                                 @endforeach
@@ -173,7 +173,7 @@
                                     <li class="item-intrafood">
                                         <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
                                             name="intrafood[]" id="{{ $item->kodeprod }}"
-                                            value="{{ $item->kodeprod }}">
+                                            value="{{ $item->kodeprod }}" {{ (is_array(old('intrafood')) && in_array($item->kodeprod, old('intrafood'))) ? ' checked' : '' }}>
                                         <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
                                     </li>
                                 @endforeach
@@ -194,7 +194,7 @@
                                     <li class="item-strive">
                                         <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
                                             name="strive[]" id="{{ $item->kodeprod }}"
-                                            value="{{ $item->kodeprod }}">
+                                            value="{{ $item->kodeprod }}" {{ (is_array(old('strive')) && in_array($item->kodeprod, old('strive'))) ? ' checked' : '' }}>
                                         <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
                                     </li>
                                 @endforeach
@@ -215,7 +215,7 @@
                                     <li class="item-mdj">
                                         <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
                                             name="mdj[]" id="{{ $item->kodeprod }}"
-                                            value="{{ $item->kodeprod }}">
+                                            value="{{ $item->kodeprod }}" {{ (is_array(old('mdj')) && in_array($item->kodeprod, old('mdj'))) ? ' checked' : '' }}>
                                         <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
                                     </li>
                                 @endforeach
@@ -234,12 +234,12 @@
 
                         <div class="input-field">
                             <label>Produk Kompetitor</label>
-                            <textarea name="produk_kompetitor" cols="30" rows="4"></textarea>
+                            <textarea name="produk_kompetitor" cols="30" rows="4">{{ Session::get('produk_kompetitor') }}</textarea>
                         </div>
 
                         <div class="input-field">
                             <label>Catatan</label>
-                            <textarea name="catatan" cols="30" rows="4"></textarea>
+                            <textarea name="catatan" cols="30" rows="4">{{ Session::get('catatan') }}</textarea>
                         </div>
                     </div>
 

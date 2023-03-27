@@ -78,10 +78,9 @@ class visitController extends Controller
         Session::flash('nama_pemilik', $request->nama_pemilik);
         Session::flash('alamat_toko', $request->alamat_toko);
         Session::flash('jenis_toko', $request->jenis_toko);
-        Session::flash('produk_kompetitor', $request->jenis_toko);
-        Session::flash('catatan', $request->jenis_toko);
-        Session::flash('tgl_visit', $request->tgl_visit);
+        Session::flash('produk_kompetitor', $request->produk_kompetitor);
         Session::flash('catatan', $request->catatan);
+        Session::flash('tgl_visit', $request->tgl_visit);
         // Session::flash('foto_toko', $request->foto_toko);
 
         $response = Http::get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=-6.2291164&longitude=106.6554073&localityLanguage=en')->json();

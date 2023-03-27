@@ -20,13 +20,13 @@
                 <div class="fields">
                     <div class="input-field">
                         <label>Tanggal Briefing</label>
-                        <input type="date" name="tgl_briefing" />
+                        <input type="date" name="tgl_briefing" value="{{ Session::get('tgl_briefing') }}" />
                     </div>
                 </div>
                 <div class="fields">
                     <div class="input-field">
                         <label>Jenis Briefing</label>
-                        <input type="text" name="jenis" placeholder="subject briefing .." />
+                        <input type="text" name="jenis" placeholder="subject briefing .." value="{{ Session::get('jenis') }}" />
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
             <div class="fields">
                 <div class="input-field">
                     <label>Keterangan</label>
-                    <textarea id="briefing" name="keterangan" cols="30" rows="4" class="summernotex"></textarea>
+                    <textarea id="briefing" name="keterangan" cols="30" rows="4" class="summernotex">{{ Session::get('keterangan') }}</textarea>
                 </div>
             </div>
 

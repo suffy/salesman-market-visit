@@ -20,19 +20,19 @@
                 <div class="fields">
                     <div class="input-field">
                         <label>Tanggal Meeting (Mulai)</label>
-                        <input type="datetime-local" name="tgl_meeting" />
+                        <input type="datetime-local" name="tgl_meeting" value="{{ Session::get('tgl_meeting') }}" />
                     </div>
                 </div>
                 <div class="fields">
                     <div class="input-field">
                         <label>Tanggal Meeting (Selesai)</label>
-                        <input type="datetime-local" name="tgl_meeting_selesai" />
+                        <input type="datetime-local" name="tgl_meeting_selesai" value="{{ Session::get('tgl_meeting_selesai') }}" />
                     </div>
                 </div>
                 <div class="fields">
                     <div class="input-field">
                         <label>Jenis Meeting</label>
-                        <input type="text" name="jenis" placeholder="jenis meeting .." />
+                        <input type="text" name="jenis" placeholder="jenis meeting .." value="{{ Session::get('jenis') }}" />
                     </div>
                 </div>
 
@@ -42,10 +42,7 @@
         <div class="fields">
             <div class="input-field">
                 <label>Notulen / Keterangan</label>
-                <textarea name="keterangan" id="meeting" cols="30" rows="4">
-                        Notulen Meeting :<br>
-                        Peserta: <br>Hasil :
-                    </textarea>
+                <textarea name="keterangan" id="meeting" cols="30" rows="4">{{ Session::get('keterangan') }}</textarea>
             </div>
 
         </div>
