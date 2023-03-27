@@ -26,8 +26,7 @@ class visitController extends Controller
     {
         $data = [
             "query" => visit::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
-            "deltomed_herbal" => product::where('supp', '001')->where('kode_group', 'G0101')->get(),
-            "deltomed_candy" => product::where('supp', '001')->where('kode_group', 'G0102')->get(),
+            "deltomed" => product::where('supp', '001')->get(),
             "us" => product::where("supp", "005")->get(),
             "marguna" => product::where("supp", "002")->get(),
             "intrafood" => product::where("supp", "012")->get(),
