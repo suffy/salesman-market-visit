@@ -734,19 +734,31 @@ form .buttons button,
 .list-items .item,
 .list-items-us .item-us,
 .list-items-marguna .item-marguna,
-.list-items-intrafood .item-intrafood,
 .list-items-strive .item-strive,
 .list-items-mdj .item-mdj,
 .list-items-candy .item-candy {
     display: flex;
     align-items: center;
     list-style: none;
-    height: 25px;
+    height: 30px;
     cursor: pointer;
     transition: 0.3s;
     padding: 0 0px;
     border-radius: 8px;
 }
+
+.list-items-intrafood .item-intrafood{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 0 0px;
+    border-radius: 8px;
+}
+}
+
 .list-items .item:hover,
 .list-items-us .item-us:hover,
 .list-items-marguna .item-marguna:hover,
