@@ -65,7 +65,8 @@
 
                         <div class="input-field">
                             <label>Foto Toko</label>
-                            <input type="file" name="foto_toko" />
+                            {{-- <input type="file" name="foto_toko" id="foto_toko" /> --}}
+                            <input type="file" accept="image/*" name="foto_toko" capture="camera" />
                         </div>
 
                         <div class="input-field">

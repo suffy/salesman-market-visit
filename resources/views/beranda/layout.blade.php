@@ -166,30 +166,38 @@
                 );
 
         }
+        
+        var img = document.getElementById('foto_toko');
+        console.log(img)
+        var context;
+        img.src = canvas.toDataURL('image/png');
+        document.body.appendChild(img);
 
-        // console.log(lat)
+        
+        function takeSnapshot() {
+            // buat elemen img
+            var img = document.createElement('img');
+            var context;
 
-        // x = latitude;
-        // console.log(latitude)
-        // console.log(longitude)
-        // console.log(accuracy)
+            // ambil ukuran video
+            var width = video.offsetWidth
+                    , height = video.offsetHeight;
 
+            // buat elemen canvas
+            canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
 
+            // ambil gambar dari video dan masukan 
+            // ke dalam canvas
+            context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, width, height);
 
-        // fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=` + latitude + `&longitude=` + longitude + `&localityLanguage=en`)
+            // render hasil dari canvas ke elemen img
+            img.src = canvas.toDataURL('image/png');
+            document.body.appendChild(img);
+        }
 
-        //     // console.log(x)
-
-        //     .then((response) => response.json())
-        //     .then(
-        //         (data) => {
-        //             console.log(data['city'])
-        //             provinsi.value = data['principalSubdivision'];
-        //             kota.value = data['city'];
-        //             kecamatan.value = data['locality'];
-        //         }
-
-        //     );
     </script>
 
 
