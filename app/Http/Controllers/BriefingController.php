@@ -24,11 +24,23 @@ class BriefingController extends Controller
      */
     public function index()
     {
-
-        $data = [
-            "query" => Briefing::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
-        ];
-
+        if (Auth::user()->email == 'suffy.yanuar@gmail.com' 
+            || Auth::user()->email == 'suffy.mpm@gmail.com'
+            || Auth::user()->email == 'fardison.juntak@gmail.com'
+            || Auth::user()->email == 'junius.prasetyo05@gmail.com'
+            || Auth::user()->email == 'hermanoscar2017@gmail.com'
+            || Auth::user()->email == 'igede.iw@gmail.com'
+            || Auth::user()->email == 'yayangtjoa2@gmail.com'
+            || Auth::user()->email == 'hwiryanto@gmail.com'
+        ) {
+            $data = [
+                "query" => Briefing::orderBy('id', 'desc')->get(),
+            ];
+        }else{
+            $data = [
+                "query" => Briefing::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
+            ];
+        }
         return view('beranda.briefing.index')->with("data", $data);
     }
 
@@ -148,7 +160,19 @@ class BriefingController extends Controller
 
     public function export_pdf(int $id)
     {
-        $data = Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
+        if (Auth::user()->email == 'suffy.yanuar@gmail.com' 
+            || Auth::user()->email == 'suffy.mpm@gmail.com'
+            || Auth::user()->email == 'fardison.juntak@gmail.com'
+            || Auth::user()->email == 'junius.prasetyo05@gmail.com'
+            || Auth::user()->email == 'hermanoscar2017@gmail.com'
+            || Auth::user()->email == 'igede.iw@gmail.com'
+            || Auth::user()->email == 'yayangtjoa2@gmail.com'
+            || Auth::user()->email == 'hwiryanto@gmail.com'
+        ) {
+            $data = Briefing::where('id', $id)->first();
+        }else{
+            $data = Briefing::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
+        }
         $pdf = Pdf::loadView('beranda.briefing.pdf', ['data' => $data]);
         return $pdf->stream('briefing.pdf');
     }

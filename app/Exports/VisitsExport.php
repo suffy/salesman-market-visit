@@ -16,16 +16,34 @@ class VisitsExport implements FromView, ShouldAutoSize
 
     public function view(): View
     {
-        return view('beranda.visit.exports.visit', [
-            'visit' => visit::query()
-            ->join('product_mpm', 'product_mpm.id_ref', '=', 'visits.id')
-            ->join('products', 'product_mpm.kodeprod', '=', 'products.kodeprod')
-            // ->select('*')
-            ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
-            // ->select('users.name', 'users.country', 'orders.price')
-            // ->where('users.country', $this->country)
-            ->where('created_by_email', Auth::user()->email)->get(),
-        ]);
+
+        if (Auth::user()->email == 'suffy.yanuar@gmail.com' 
+            || Auth::user()->email == 'suffy.mpm@gmail.com'
+            || Auth::user()->email == 'fardison.juntak@gmail.com'
+            || Auth::user()->email == 'junius.prasetyo05@gmail.com'
+            || Auth::user()->email == 'hermanoscar2017@gmail.com'
+            || Auth::user()->email == 'igede.iw@gmail.com'
+            || Auth::user()->email == 'yayangtjoa2@gmail.com'
+            || Auth::user()->email == 'hwiryanto@gmail.com'
+        ) {
+            return view('beranda.visit.exports.visit', [
+                'visit' => visit::query()
+                ->join('product_mpm', 'product_mpm.id_ref', '=', 'visits.id')
+                ->join('products', 'product_mpm.kodeprod', '=', 'products.kodeprod')
+                ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
+                ->get(),
+            ]);
+        }else{
+            return view('beranda.visit.exports.visit', [
+                'visit' => visit::query()
+                ->join('product_mpm', 'product_mpm.id_ref', '=', 'visits.id')
+                ->join('products', 'product_mpm.kodeprod', '=', 'products.kodeprod')
+                ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
+                ->where('created_by_email', Auth::user()->email)->get(),
+            ]);
+        }
+
+        
     }
 
 }

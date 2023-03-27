@@ -24,17 +24,40 @@ class visitController extends Controller
      */
     public function index()
     {
-        $data = [
-            "query" => visit::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
-            "herbal" => product::where('supp', '001')->where('kode_group','G0101')->get(),
-            "candy" => product::where('supp', '001')->where('kode_group','G0102')->get(),
-            "us" => product::where("supp", "005")->get(),
-            "marguna" => product::where("supp", "002")->get(),
-            "intrafood" => product::where("supp", "012")->get(),
-            "strive" => product::where("supp", "013")->get(),
-            "hni" => product::where("supp", "014")->get(),
-            "mdj" => product::where("supp", "015")->get(),
-        ];
+        if (Auth::user()->email == 'suffy.yanuar@gmail.com' 
+            || Auth::user()->email == 'suffy.mpm@gmail.com'
+            || Auth::user()->email == 'fardison.juntak@gmail.com'
+            || Auth::user()->email == 'junius.prasetyo05@gmail.com'
+            || Auth::user()->email == 'hermanoscar2017@gmail.com'
+            || Auth::user()->email == 'igede.iw@gmail.com'
+            || Auth::user()->email == 'yayangtjoa2@gmail.com'
+            || Auth::user()->email == 'hwiryanto@gmail.com'
+        ) {
+            $data = [
+                "query" => visit::orderBy('id', 'desc')->get(),
+                "herbal" => product::where('supp', '001')->where('kode_group','G0101')->get(),
+                "candy" => product::where('supp', '001')->where('kode_group','G0102')->get(),
+                "us" => product::where("supp", "005")->get(),
+                "marguna" => product::where("supp", "002")->get(),
+                "intrafood" => product::where("supp", "012")->get(),
+                "strive" => product::where("supp", "013")->get(),
+                "hni" => product::where("supp", "014")->get(),
+                "mdj" => product::where("supp", "015")->get(),
+            ];
+        }else{
+            $data = [
+                "query" => visit::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
+                "herbal" => product::where('supp', '001')->where('kode_group','G0101')->get(),
+                "candy" => product::where('supp', '001')->where('kode_group','G0102')->get(),
+                "us" => product::where("supp", "005")->get(),
+                "marguna" => product::where("supp", "002")->get(),
+                "intrafood" => product::where("supp", "012")->get(),
+                "strive" => product::where("supp", "013")->get(),
+                "hni" => product::where("supp", "014")->get(),
+                "mdj" => product::where("supp", "015")->get(),
+            ];
+        }
+        
         return view('beranda.visit.index')->with("data", $data);
     }
 
@@ -267,16 +290,34 @@ class visitController extends Controller
     }
 
     public function export_pdf(int $id){
-        // $data = visit::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
-        $data = visit::query()
+
+        if (Auth::user()->email == 'suffy.yanuar@gmail.com' 
+            || Auth::user()->email == 'suffy.mpm@gmail.com'
+            || Auth::user()->email == 'fardison.juntak@gmail.com'
+            || Auth::user()->email == 'junius.prasetyo05@gmail.com'
+            || Auth::user()->email == 'hermanoscar2017@gmail.com'
+            || Auth::user()->email == 'igede.iw@gmail.com'
+            || Auth::user()->email == 'yayangtjoa2@gmail.com'
+            || Auth::user()->email == 'hwiryanto@gmail.com'
+        ) {
+            $data = visit::query()
+                ->join('product_mpm', 'product_mpm.id_ref', '=', 'visits.id')
+                ->join('products', 'product_mpm.kodeprod', '=', 'products.kodeprod')
+                ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','visits.tgl_visit', 'visits.foto_toko', 'visits.produk_kompetitor', 'visits.catatan', 'visits.provinsi', 'visits.kota', 'visits.kecamatan', 'product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
+                ->where('visits.id', $id)
+                ->get();
+        }else{
+            $data = visit::query()
                 ->join('product_mpm', 'product_mpm.id_ref', '=', 'visits.id')
                 ->join('products', 'product_mpm.kodeprod', '=', 'products.kodeprod')
                 ->select('visits.nama_toko','visits.nama_pemilik','visits.jenis_toko','visits.alamat_toko','visits.created_by','visits.tgl_visit', 'visits.foto_toko', 'visits.produk_kompetitor', 'visits.catatan', 'visits.provinsi', 'visits.kota', 'visits.kecamatan', 'product_mpm.kodeprod','products.namaprod','products.supp','products.kode_group','products.nama_group','products.kode_subgroup','products.nama_subgroup')
                 ->where('created_by_email', Auth::user()->email)
                 ->where('visits.id', $id)
                 ->get();
+        }
+
         $pdf = Pdf::loadView('beranda.visit.pdf', ['data' => $data]);
-        return $pdf->stream('aaaa.pdf');
+        return $pdf->stream('market_visit.pdf');
     }
 
 }

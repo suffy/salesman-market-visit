@@ -20,9 +20,23 @@ class MeetingController extends Controller
      */
     public function index()
     {
-        $data = [
-            "query" => Meeting::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
-        ];
+        if (Auth::user()->email == 'suffy.yanuar@gmail.com' 
+            || Auth::user()->email == 'suffy.mpm@gmail.com'
+            || Auth::user()->email == 'fardison.juntak@gmail.com'
+            || Auth::user()->email == 'junius.prasetyo05@gmail.com'
+            || Auth::user()->email == 'hermanoscar2017@gmail.com'
+            || Auth::user()->email == 'igede.iw@gmail.com'
+            || Auth::user()->email == 'yayangtjoa2@gmail.com'
+            || Auth::user()->email == 'hwiryanto@gmail.com'
+        ) {
+            $data = [
+                "query" => Meeting::orderBy('id', 'desc')->get(),
+            ];
+        }else{
+            $data = [
+                "query" => Meeting::where('created_by_email', Auth::user()->email)->orderBy('id', 'desc')->get(),
+            ];
+        }
         return view('beranda.meeting.index')->with("data", $data);
     }
 
@@ -149,8 +163,21 @@ class MeetingController extends Controller
 
     public function export_pdf(int $id)
     {
-        $data = Meeting::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
+        if (Auth::user()->email == 'suffy.yanuar@gmail.com' 
+            || Auth::user()->email == 'suffy.mpm@gmail.com'
+            || Auth::user()->email == 'fardison.juntak@gmail.com'
+            || Auth::user()->email == 'junius.prasetyo05@gmail.com'
+            || Auth::user()->email == 'hermanoscar2017@gmail.com'
+            || Auth::user()->email == 'igede.iw@gmail.com'
+            || Auth::user()->email == 'yayangtjoa2@gmail.com'
+            || Auth::user()->email == 'hwiryanto@gmail.com'
+        ) {
+            $data = Meeting::where('id', $id)->first();
+        }else{
+            $data = Meeting::where('id', $id)->where('created_by_email', Auth::user()->email)->first();
+        }
+
         $pdf = Pdf::loadView('beranda.meeting.pdf', ['data' => $data]);
-        return $pdf->stream('aaaa.pdf');
+        return $pdf->stream('meeting.pdf');
     }
 }
