@@ -55,6 +55,7 @@
         const selectBtnStrive = document.querySelector(".select-btn-strive");
         const selectBtnHni = document.querySelector(".select-btn-hni");
         const selectBtnMdj = document.querySelector(".select-btn-mdj");
+        const selectBtnCandy = document.querySelector(".select-btn-candy");
 
         items = document.querySelectorAll(".item");
 
@@ -78,6 +79,9 @@
         });
         selectBtnMdj.addEventListener("click", () => {
             selectBtnMdj.classList.toggle("open");
+        });
+        selectBtnCandy.addEventListener("click", () => {
+            selectBtnCandy.classList.toggle("open");
         });
     </script>
 

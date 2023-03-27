@@ -79,11 +79,9 @@
                     <span class="title">Data Produk MPM</span>
 
                     <div class="fields-full-width">
-
                         <div class="input-field">
-
                             <div class="select-btn">
-                                <span class="btn-text">Deltomed (click to open)</span>
+                                <span class="btn-text">Deltomed Herbal (click to open)</span>
                                 <span class="arrow-dwn">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </span>
@@ -91,10 +89,10 @@
 
                             <ul class="list-items">
 
-                                @foreach ($data['deltomed'] as $item)
+                                @foreach ($data['deltomed_herbal'] as $item)
                                     <li class="item">
                                         <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
-                                            name="deltomed[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}">
+                                            name="herbal[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}">
                                         <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
                                     </li>
                                 @endforeach
@@ -102,6 +100,27 @@
 
                         </div>
                     </div>
+
+                    {{-- <div class="fields-full-width">
+                        <div class="input-field">
+                            <div class="select-btn-mdj" id="select-btn-mdj">
+                                <span class="btn-text-mdj">MDJ (click to open)</span>
+                                <span class="arrow-dwn-mdj">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <ul class="list-items-mdj">
+                                @foreach ($data['mdj'] as $item)
+                                    <li class="item-mdj">
+                                        <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
+                                            name="mdj[]" id="{{ $item->kodeprod }}"
+                                            value="{{ $item->kodeprod }}">
+                                        <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div> --}}
 
                     <div class="fields-full-width">
                         <div class="input-field">
@@ -185,26 +204,7 @@
                         </div>
                     </div>
 
-                    <div class="fields-full-width">
-                        <div class="input-field">
-                            <div class="select-btn-hni" id="select-btn-hni">
-                                <span class="btn-text-hni">HNI (click to open)</span>
-                                <span class="arrow-dwn-hni">
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </span>
-                            </div>
-                            <ul class="list-items-hni">
-                                @foreach ($data['hni'] as $item)
-                                    <li class="item-hni">
-                                        <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
-                                            name="hni[]" id="{{ $item->kodeprod }}"
-                                            value="{{ $item->kodeprod }}">
-                                        <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
+                    
 
                     <div class="fields-full-width">
                         <div class="input-field">
