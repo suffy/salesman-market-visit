@@ -79,19 +79,16 @@
                     <span class="title">Data Produk MPM</span>
 
                     <div class="fields-full-width">
-
                         <div class="input-field">
-
                             <div class="select-btn">
-                                <span class="btn-text">Deltomed (click to open)</span>
+                                <span class="btn-text">Herbal (click to open)</span>
                                 <span class="arrow-dwn">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </span>
                             </div>
 
                             <ul class="list-items">
-
-                                @foreach ($data['deltomed'] as $item)
+                                @foreach ($data['herbal'] as $item)
                                     <li class="item">
                                         <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
                                             name="deltomed[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}">
@@ -99,9 +96,29 @@
                                     </li>
                                 @endforeach
                             </ul>
-
                         </div>
                     </div>
+
+                    <div class="fields-full-width">
+                        <div class="input-field">
+                            <div class="select-btn-candy" id="select-btn-candy">
+                                <span class="btn-text-candy">Candy (click to open)</span>
+                                <span class="arrow-dwn-candy">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <ul class="list-items-candy">
+                                @foreach ($data['candy'] as $item)
+                                    <li class="item-candy">
+                                        <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
+                                            name="candy[]" id="{{ $item->kodeprod }}" value="{{ $item->kodeprod }}">
+                                        <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
 
                     <div class="fields-full-width">
                         <div class="input-field">
@@ -177,27 +194,6 @@
                                     <li class="item-strive">
                                         <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
                                             name="strive[]" id="{{ $item->kodeprod }}"
-                                            value="{{ $item->kodeprod }}">
-                                        <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="fields-full-width">
-                        <div class="input-field">
-                            <div class="select-btn-hni" id="select-btn-hni">
-                                <span class="btn-text-hni">HNI (click to open)</span>
-                                <span class="arrow-dwn-hni">
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </span>
-                            </div>
-                            <ul class="list-items-hni">
-                                @foreach ($data['hni'] as $item)
-                                    <li class="item-hni">
-                                        <input type="checkbox" class="checkbox fa-solid fa-check check-icon"
-                                            name="hni[]" id="{{ $item->kodeprod }}"
                                             value="{{ $item->kodeprod }}">
                                         <label for="{{ $item->kodeprod }}">{{ $item->namaprod }}</label>
                                     </li>

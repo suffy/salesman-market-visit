@@ -55,7 +55,7 @@
         const selectBtnMarguna = document.querySelector(".select-btn-marguna");
         const selectBtnIntrafood = document.querySelector(".select-btn-intrafood");
         const selectBtnStrive = document.querySelector(".select-btn-strive");
-        const selectBtnHni = document.querySelector(".select-btn-hni");
+        // const selectBtnHni = document.querySelector(".select-btn-hni");
         const selectBtnMdj = document.querySelector(".select-btn-mdj");
         const selectBtnCandy = document.querySelector(".select-btn-candy");
 
@@ -76,9 +76,9 @@
         selectBtnStrive.addEventListener("click", () => {
             selectBtnStrive.classList.toggle("open");
         });
-        selectBtnHni.addEventListener("click", () => {
-            selectBtnHni.classList.toggle("open");
-        });
+        // selectBtnHni.addEventListener("click", () => {
+        //     selectBtnHni.classList.toggle("open");
+        // });
         selectBtnMdj.addEventListener("click", () => {
             selectBtnMdj.classList.toggle("open");
         });

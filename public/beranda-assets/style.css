@@ -644,8 +644,8 @@ form .buttons button,
 .select-btn-marguna,
 .select-btn-intrafood,
 .select-btn-strive,
-.select-btn-hni,
-.select-btn-mdj {
+.select-btn-mdj,
+.select-btn-candy {
     display: flex;
     height: 50px;
     align-items: center;
@@ -661,8 +661,8 @@ form .buttons button,
 .select-btn-marguna .btn-text-marguna,
 .select-btn-intrafood .btn-text-intrafood,
 .select-btn-strive .btn-text-strive,
-.select-btn-hni .btn-text-hni,
-.select-btn-mdj .btn-text-mdj {
+.select-btn-mdj .btn-text-mdj,
+.select-btn-candy .btn-text-candy {
     font-size: 17px;
     font-weight: 400;
     color: var(--text-color);
@@ -672,8 +672,8 @@ form .buttons button,
 .select-btn-marguna .arrow-dwn-marguna,
 .select-btn-intrafood .arrow-dwn-intrafood,
 .select-btn-strive .arrow-dwn-strive,
-.select-btn-hni .arrow-dwn-hni,
-.select-btn-mdj .arrow-dwn-mdj {
+.select-btn-mdj .arrow-dwn-mdj,
+.select-btn-candy .arrow-dwn-candy {
     display: flex;
     height: 21px;
     width: 21px;
@@ -700,10 +700,10 @@ form .buttons button,
 .select-btn-strive.open .arrow-dwn {
     transform: rotate(-180deg);
 }
-.select-btn-hni.open .arrow-dwn {
+.select-btn-mdj.open .arrow-dwn {
     transform: rotate(-180deg);
 }
-.select-btn-mdj.open .arrow-dwn {
+.select-btn-candy.open .arrow-dwn {
     transform: rotate(-180deg);
 }
 .list-items,
@@ -711,8 +711,8 @@ form .buttons button,
 .list-items-marguna,
 .list-items-intrafood,
 .list-items-strive,
-.list-items-hni,
-.list-items-mdj {
+.list-items-mdj,
+.list-items-candy {
     position: relative;
     margin-top: 1px;
     border-radius: 8px;
@@ -727,8 +727,8 @@ form .buttons button,
 .select-btn-marguna.open ~ .list-items-marguna,
 .select-btn-intrafood.open ~ .list-items-intrafood,
 .select-btn-strive.open ~ .list-items-strive,
-.select-btn-hni.open ~ .list-items-hni,
-.select-btn-mdj.open ~ .list-items-mdj {
+.select-btn-mdj.open ~ .list-items-mdj,
+.select-btn-candy.open ~ .list-items-candy {
     display: block;
 }
 .list-items .item,
@@ -736,8 +736,8 @@ form .buttons button,
 .list-items-marguna .item-marguna,
 .list-items-intrafood .item-intrafood,
 .list-items-strive .item-strive,
-.list-items-hni .item-hni,
-.list-items-mdj .item-mdj {
+.list-items-mdj .item-mdj,
+.list-items-candy .item-candy {
     display: flex;
     align-items: center;
     list-style: none;
@@ -752,8 +752,8 @@ form .buttons button,
 .list-items-marguna .item-marguna:hover,
 .list-items-intrafood .item-intrafood:hover,
 .list-items-strive .item-strive:hover,
-.list-items-hni .item-hni:hover,
-.list-items-mdj .item-mdj:hover {
+.list-items-mdj .item-mdj:hover,
+.list-items-candy .item-candy:hover {
     background-color: var(--box2-color);
 }
 .item .item-text,
@@ -761,8 +761,8 @@ form .buttons button,
 .item-marguna .item-text-marguna,
 .item-intrafood .item-text-intrafood,
 .item-strive .item-text-strive,
-.item-hni .item-text-hni,
-.item-mdj .item-text-mdj {
+.item-mdj .item-text-mdj,
+.item-candy .item-text-candy {
     font-size: 16px;
     font-weight: 400;
     color: var(--black-light-color);
@@ -772,8 +772,8 @@ form .buttons button,
 .item-marguna .checkbox,
 .item-intrafood .checkbox,
 .item-strive .checkbox,
-.item-hni .checkbox,
-.item-mdj .checkbox {
+.item-mdj .checkbox,
+.item-candy .checkbox {
     display: flex;
     align-items: center;
     justify-content: center;
